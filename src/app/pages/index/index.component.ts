@@ -59,7 +59,7 @@ export class IndexComponent {
   }
 
   ngOnInit() {
-    this.items2 = MenuService.getItemsMenu();
+    this.items2 = MenuService.getItemsOptionsEventos();
     this.positionOptions = MenuService.getPositionOptions();
 
     this.route.params.subscribe(params => {

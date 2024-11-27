@@ -2,17 +2,12 @@
     <div class="col-md-1" style="position: static;">
     </div>
     <div class="col-md-10">
-        <h1 style="text-align: center; font-weight: bold;">SEJA BEM-VINDA(O)</h1>
-        
-        <p-divider type="solid"></p-divider>
-        <h5 style="text-align: center;">O futuro é construído pelas nossas decisões diárias, inconstantes e mutáveis, e cada evento influencia todos os outros.</h5>
-        <h6 style="text-align: center;"> - Alvin Tofller</h6>
         
         <p-divider type="solid"></p-divider>
             <p-carousel 
                 [value]="items2" 
-                [numVisible]="4" 
-                [numScroll]="4" 
+                [numVisible]="1" 
+                [numScroll]="1" 
                 [circular]="true" 
                 [responsiveOptions]="responsiveOptions">
                     <ng-template let-item pTemplate="item">
@@ -20,7 +15,7 @@
                             <div class="mb-3" (click)="abrirLink(item.url)" style="cursor: grab;">
                                 <div class="relative mx-auto">
                                     <div class="polaroid">
-                                        <img [src]="item.icon" alt="5 Terre" style="width:100%; height: 350px; object-fit: cover;">
+                                        <img [src]="item.icon" alt="5 Terre" style="width:100%; height: 550px; object-fit: cover;">
                                         <div class="container">
                                             <h5>{{ item.label }}</h5>
                                         </div>

@@ -178,6 +178,7 @@ public static getItemsMenuFaturamento(): MenuItem[] {
           target: '_self'
       },
   ];
+
 }
   public static getItemsMenu() {
     return [
@@ -229,6 +230,103 @@ public static getItemsMenuFaturamento(): MenuItem[] {
             url: './perfil',
             target: '_self'
         }
+    ];
+  }
+
+  public static getItemsOptionsEventos() {
+    return [
+        {
+            label: 'Halloween',
+            icon: './assets/images/eventos/14.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Lançamento',
+            icon: './assets/images/eventos/16.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'TPM',
+            icon: './assets/images/eventos/14.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Culpado ou Inocente?',
+            icon: './assets/images/eventos/13.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Festa da Primavera',
+            icon: './assets/images/eventos/16.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'A... Alice',
+            icon: './assets/images/eventos/13.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'De volta ao futuro',
+            icon: './assets/images/eventos/11.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Circus',
+            icon: './assets/images/eventos/15.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Verão 40 graus',
+            icon: './assets/images/eventos/8.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Área 51',
+            icon: './assets/images/eventos/10.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Super festa',
+            icon: './assets/images/eventos/7.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Na rua',
+            icon: './assets/images/eventos/5.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'I Feel God',
+            icon: './assets/images/eventos/4.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'B Bee Bear',
+            icon: './assets/images/eventos/3.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
+            label: 'Open Bee Beer',
+            icon: './assets/images/eventos/2.jpg',
+            url: './eventos/1',
+            target: '_self'
+        }
+ 
+
     ];
   }
 
