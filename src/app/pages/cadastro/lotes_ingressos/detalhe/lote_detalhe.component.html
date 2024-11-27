@@ -1,0 +1,52 @@
+<div class="row">
+
+    <div class="col-6">
+        <div class="field">
+            <label for="nome">Nome:</label>
+            <input type="text" pInputText id="nome" [(ngModel)]="item.nome" required autofocus />
+            <small class="p-error" *ngIf="submitted && !item.nome">nome is required.</small>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="field">
+            <label for="descricao">Descrição:</label>
+            <input type="text" pInputText id="descricao" [(ngModel)]="item.descricao" required autofocus />
+            <small class="p-error" *ngIf="submitted && !item.descricao">descricao is required.</small>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="field">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" pInputText id="quantidade" [(ngModel)]="item.quantidade" required autofocus />
+            <small class="p-error" *ngIf="submitted && !item.quantidade">quantidade is required.</small>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="field">
+            <label for="valor_padrao">Valor Padrão:</label>
+            <input type="number" pInputText id="valor_padrao" [(ngModel)]="item.valor_padrao" required autofocus />
+            <small class="p-error" *ngIf="submitted && !item.valor_padrao">valor_padrao is required.</small>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="field">
+            <label for="inicio">Início?:</label>
+            <p-calendar [(ngModel)]="item.inicio" dateFormat="dd/mm/yy" required autofocus [touchUI]="true" ></p-calendar>
+            <small class="p-error" *ngIf="submitted && !item.inicio">inicio is required.</small>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="field">
+            <label for="fim">Fim?:</label>
+            <p-calendar [(ngModel)]="item.inicio" dateFormat="dd/mm/yy" required autofocus [touchUI]="true" ></p-calendar>
+            <small class="p-error" *ngIf="submitted && !item.fim">fim is required.</small>
+        </div>
+    </div>
+    
+    
+
+</div>
+<p-divider type="solid"></p-divider>
+<h5>Gerenciamento de Ingressos Vinculados ao Lote</h5>
+<app-ingresso_detalhe  [idLote]="item.id"></app-ingresso_detalhe>

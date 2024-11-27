@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-md-1" style="position: static;">
+        <app-menu-lateral-cadastro></app-menu-lateral-cadastro>
+    </div>
+    <div class="col-md-10">
+        <div class="card flex justify-content-center">
+            <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+        </div>
+        <p-card header="Gerenciamento de Lotes/Ingressos">
+               <!-- tabelinha a seguir -->
+
+    <div class="card">
+        <p-toast></p-toast>
+
+
+      <p-table
+            #dt
+            [value]="lista"
+            [rows]="10"
+            [paginator]="true"
+            [globalFilterFields]="['nome', 'quantidade', 'valor_padrao', 'inicio', 'fim']"
+            [tableStyle]="{ 'max-width': '100%' }"
+            [(selection)]="selecteds"
+            [rowHover]="true"
+            dataKey="id"
+            currentPageReportTemplate="{first} à {last} de {totalRecords}"
+            [showCurrentPageReport]="true"
+        >
+            <ng-template pTemplate="caption">
+                    <p-toolbar>
+                        <ng-template pTemplate="left">
+                            <button pButton pRipple label="" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                            <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger mr-2" (click)="deleteSelecteds()" [disabled]="!selecteds || !selecteds.length"></button>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar..." />
+                            </span>
+                        </ng-template>
+                
+                        <ng-template pTemplate="right">
+                            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Importar" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                            <button pButton pRipple label="Exportar" icon="pi pi-upload" class="p-button-help"></button>
+                        </ng-template>
+                    </p-toolbar>
+                
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 4rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+
+                    <th pSortableColumn="nome">Nome<p-sortIcon field="nome"></p-sortIcon></th>
+                    <th pSortableColumn="quantidade">Quantidade <p-sortIcon field="quantidade"></p-sortIcon></th>
+                    <th pSortableColumn="valor_padrao">Valor Padrão <p-sortIcon field="valor_padrao"></p-sortIcon></th>
+                    <th pSortableColumn="inicio">Início <p-sortIcon field="inicio"></p-sortIcon></th>
+                    <th pSortableColumn="fim">Fim <p-sortIcon field="fim"></p-sortIcon></th>
+                    
+                    <th style="width: 12rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                    </td>
+                    
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.quantidade }}</td>
+                    <td>{{ item.valor_padrao | currency:'BRL' }}</td>
+                    <td>{{ formatDate(item.inicio) }}</td>
+                    <td>{{ formatDate(item.fim) }}</td>
+                    
+                    <td>
+                        <button pButton pRipple icon="pi pi-ticket" class="p-button-rounded p-button-help mr-2" pTooltip="Ingressos Vinculados" (click)="editIngressos(item)"></button>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(item)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(item)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">Total: {{ lista ? lista.length : 0 }}</div>
+            </ng-template>
+        </p-table>
+    </div>
+    
+    <p-dialog [(visible)]="ingressosDialog" [style]="{ width: '80%' }" header="Gerenciamento de Ingressos Vinculados ao Lote" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+
+            <app-ingressos_evento_detalhe  [idLote]="item.id"></app-ingressos_evento_detalhe>
+
+        </ng-template>
+        
+        <ng-template pTemplate="footer">
+        </ng-template>
+    </p-dialog>
+
+    <p-dialog [(visible)]="detalheDialog" [style]="{ width: '80%' }" header="Detalhe de Lista de Desconto Vinculada" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+
+            <app-lote_detalhe_evento_detalhe  [idListaDesconto]="item.id"></app-lote_detalhe_evento_detalhe>
+            
+        </ng-template>
+        
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text" (click)="saveEndereco()"></button>
+        </ng-template>     
+    </p-dialog>
+
+    <p-confirmDialog [style]="{ width: '40%' }"></p-confirmDialog>
+
+</p-card>
+
+</div>
+<div class="col-md-1"></div>
+</div>

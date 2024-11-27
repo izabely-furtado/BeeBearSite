@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-md-1" style="position: static;">
+        <app-menu-lateral-cadastro></app-menu-lateral-cadastro>
+    </div>
+    <div class="col-md-10">
+        <div class="card flex justify-content-center">
+            <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+        </div>
+        <p-card header="Gerenciamento de Cupons">
+               <!-- tabelinha a seguir -->
+
+    <div class="card">
+        <p-toast></p-toast>
+        <p-table
+            #dt
+            [value]="lista"
+            [rows]="10"
+            [paginator]="true"
+            [globalFilterFields]="['codigo', 'desconto.tipo', 'desconto.valor', 'valor_minimo_gasto', 'validade']"
+            [tableStyle]="{ 'max-width': '100%' }"
+            [(selection)]="selecteds"
+            [rowHover]="true"
+            dataKey="id"
+            currentPageReportTemplate="{first} à {last} de {totalRecords}"
+            [showCurrentPageReport]="true"
+        >
+            <ng-template pTemplate="caption">
+                    <p-toolbar>
+                        <ng-template pTemplate="left">
+                            <button pButton pRipple label="" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                            <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger mr-2" (click)="deleteSelecteds()" [disabled]="!selecteds || !selecteds.length"></button>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar..." />
+                            </span>
+                        </ng-template>
+                
+                        <ng-template pTemplate="right">
+                            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Importar" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                            <button pButton pRipple label="Exportar" icon="pi pi-upload" class="p-button-help"></button>
+                        </ng-template>
+                    </p-toolbar>
+                
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 4rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="codigo">Código <p-sortIcon field="codigo"></p-sortIcon></th>
+                    <th pSortableColumn="desconto.tipo">Tipo de Desconto <p-sortIcon field="desconto.porcentagem"></p-sortIcon></th>
+                    <th pSortableColumn="desconto.valor">Valor <p-sortIcon field="desconto.valor"></p-sortIcon></th>
+                    <th pSortableColumn="desconto.valor">Valor Mínimo Gasto<p-sortIcon field="valor_minimo_gasto"></p-sortIcon></th>
+                    <th pSortableColumn="validade">Validade <p-sortIcon field="validade"></p-sortIcon></th>
+                    
+                    <th style="width: 12rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                    </td>
+                    
+                    <td>{{ item.codigo }}</td>
+                    <td>{{ item.desconto.tipo }}</td>
+                    <td *ngIf="tipoPorcentagem(item)">{{ item.desconto.valor | number }}%</td>
+                    <td *ngIf="!tipoPorcentagem(item)">{{ item.desconto.valor | currency:'BRL' }}</td>
+                    <td>{{ item.valor_minimo_gasto | currency:'BRL' }}</td>
+                    <td>{{ formatDate(item.validade) }}</td>
+                    
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(item)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(item)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">Total: {{ lista ? lista.length : 0 }}</div>
+            </ng-template>
+        </p-table>
+    </div>
+    
+    <p-dialog [(visible)]="cupomDialog" [style]="{ width: '80%' }" header="Detalhes do Cupom" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+
+            <app-cupom_detalhe  [idCupom]="item.id"></app-cupom_detalhe>
+            
+        </ng-template>
+        
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+        </ng-template>
+    </p-dialog>
+
+    
+    <p-confirmDialog [style]="{ width: '40%' }"></p-confirmDialog>
+
+</p-card>
+
+</div>
+<div class="col-md-1"></div>
+</div>
+    
+
+    

@@ -1,0 +1,146 @@
+<div class="row">
+    <div class="col-md-1" style="position: static;">
+        <app-menu-lateral-cadastro></app-menu-lateral-cadastro>
+    </div>
+    <div class="col-md-10">
+        <div class="card flex justify-content-center">
+            <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+        </div>
+        <p-card header="Gerenciamento de Plano de Contrato">
+               <!-- tabelinha a seguir -->
+
+    <div class="card">
+        <p-toast></p-toast>
+        <p-table
+            #dt
+            [value]="lista"
+            [rows]="10"
+            [paginator]="true"
+            [globalFilterFields]="['tipo', 'quant_usuarios_max', 'gerenciamento_de_permissoes', 'gerencia_produtos', 'gerencia_parceiros', 'usa_base_dados_bee_bear', 'mostra_ranking', 'mostra_informacoes_gerais_bee_bear']"
+            [tableStyle]="{ 'max-width': '100%' }"
+            [(selection)]="selecteds"
+            [rowHover]="true"
+            dataKey="id"
+            currentPageReportTemplate="{first} à {last} de {totalRecords}"
+            [showCurrentPageReport]="true"
+        >
+            <ng-template pTemplate="caption">
+                    <p-toolbar>
+                        <ng-template pTemplate="left">
+                            <button pButton pRipple label="" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                            <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger mr-2" (click)="deleteSelecteds()" [disabled]="!selecteds || !selecteds.length"></button>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar..." />
+                            </span>
+                        </ng-template>
+                
+                        <ng-template pTemplate="right">
+                            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Importar" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                            <button pButton pRipple label="Exportar" icon="pi pi-upload" class="p-button-help"></button>
+                        </ng-template>
+                    </p-toolbar>
+                
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 4rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="tipo">Estrelas</th>
+                    <th pSortableColumn="tipo">Tipo</th>
+                    <th pSortableColumn="quant_usuarios_max">Máximo de Usuários <p-sortIcon field="quant_usuarios_max"></p-sortIcon></th>
+                    <th pSortableColumn="gerenciamento_de_permissoes">
+                        <button pButton pRipple icon="pi pi-key" class="p-button-rounded p-button-warning mr-2" pTooltip="Gerenciamento de Permissões"></button>
+                    </th>
+                    <th pSortableColumn="gerencia_produtos">
+                        <button pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded p-button-danger mr-2" pTooltip="Gerenciamento de Produtos"></button>
+                    </th>
+                    <th pSortableColumn="gerencia_parceiros">
+                        <button pButton pRipple icon="pi pi-users" class="p-button-rounded p-button-help mr-2" pTooltip="Gerenciamento de Parceiros"></button>
+                    </th>
+                    <th pSortableColumn="usa_base_dados_bee_bear">
+                        <button pButton pRipple icon="pi pi-book" class="p-button-rounded p-button-success mr-2" pTooltip="Usa Base de Dados"></button>
+                    </th>
+                    <th pSortableColumn="mostra_ranking">
+                        <button pButton pRipple icon="pi pi-star" class="p-button-rounded p-button-warning mr-2" pTooltip="Mostra Ranking"></button>
+                    </th>
+                    <th pSortableColumn="mostra_informacoes_gerais_bee_bear">
+                        <button pButton pRipple icon="pi pi-chart-line" class="p-button-rounded p-button-rounded mr-2" pTooltip="Mostra Informações Gerais"></button>
+                    </th>
+                    
+                    <th style="width: 8rem"></th>
+
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                    </td>
+                    <td>
+                        <span *ngIf="getTipoStarter(item)" style="padding-right: 5px;">
+                            <i class="pi pi-star-fill" style="padding-left: 5px;"></i> 
+                            <i class="pi pi-star" style="padding-left: 5px;"></i> 
+                            <i class="pi pi-star" style="padding-left: 5px;"></i>
+                        </span>
+                   <span *ngIf="getTipoPro(item)" style="padding-right: 5px;">
+                            <i class="pi pi-star-fill" style="padding-left: 5px;"></i> 
+                            <i class="pi pi-star-fill" style="padding-left: 5px;"></i> 
+                            <i class="pi pi-star" style="padding-left: 5px;"></i>
+                        </span>
+                    
+                    <span *ngIf="getTipoPremium(item)" style="padding-right: 5px;">
+                            <i class="pi pi-star-fill" style="padding-left: 5px;"></i> 
+                            <i class="pi pi-star-fill" style="padding-left: 5px;"></i> 
+                            <i class="pi pi-star-fill" style="padding-left: 5px;"></i>
+                        </span>
+                    </td>
+                    <td>   {{ item.tipo }}
+                        
+                    </td>
+                    <td>{{ item.quant_usuarios_max }}</td>
+                    <td><p-inputSwitch [(ngModel)]="item.mostra_informacoes_gerais_bee_bear" disabled></p-inputSwitch></td>
+                    <td><p-inputSwitch [(ngModel)]="item.gerencia_produtos" disabled></p-inputSwitch></td>
+                    <td><p-inputSwitch [(ngModel)]="item.gerencia_parceiros" disabled></p-inputSwitch></td>
+                    <td><p-inputSwitch [(ngModel)]="item.usa_base_dados_bee_bear" disabled></p-inputSwitch></td>
+                    <td><p-inputSwitch [(ngModel)]="item.mostra_ranking" disabled></p-inputSwitch></td>
+                    <td><p-inputSwitch [(ngModel)]="item.mostra_informacoes_gerais_bee_bear" disabled></p-inputSwitch></td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(item)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(item)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            
+            <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">Total: {{ lista ? lista.length : 0 }}</div>
+            </ng-template>
+        </p-table>
+    </div>
+    
+    <p-dialog [(visible)]="dialog" [style]="{ width: '80%' }" header="Detalhes do Plano Contratual" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+
+            <app-plano_contrato_detalhe  [idCupom]="item.id"></app-plano_contrato_detalhe>
+            
+        </ng-template>
+        
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+        </ng-template>
+    </p-dialog>
+
+    
+    <p-confirmDialog [style]="{ width: '40%' }"></p-confirmDialog>
+
+</p-card>
+
+</div>
+<div class="col-md-1"></div>
+</div>
+    
+
+    

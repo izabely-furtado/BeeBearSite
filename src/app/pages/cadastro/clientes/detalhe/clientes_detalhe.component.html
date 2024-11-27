@@ -1,0 +1,177 @@
+            
+            <div class="row" *ngIf="item != null">   
+                <div class="col-6">
+
+                    <div class="field">
+                        <label for="razao_social">Razão Social:</label>
+                        <input type="text" pInputText id="razao_social" [(ngModel)]="item.empresa.razao_social" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !item.razao_social">Apelido is required.</small>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="field">
+                        <label for="nome_fantasia">Nome Fantasia:</label>
+                        <input type="text" pInputText id="nome_fantasia" [(ngModel)]="item.empresa.nome_fantasia" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !item.nome_fantasia">Apelido is required.</small>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="field">
+                        <label for="cnpj">CNPJ:</label>
+                        <input type="text" pInputText id="cnpj" [(ngModel)]="item.empresa.cnpj" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !item.cnpj">Apelido is required.</small>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="field">
+                        <label for="cnae">CNAE:</label>
+                        <input type="text" pInputText id="cep" [(ngModel)]="item.empresa.cnae" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !item.cnae">CPF is required.</small>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="field">
+                        <label for="area_atuacao">Área de Atuação:</label>
+                        <input type="text" pInputText id="area_atuacao" [(ngModel)]="item.empresa.area_atuacao" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !item.area_atuacao">CPF is required.</small>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="field">
+                        <label for="fundado_em">Fundado em:</label>
+                        <br>
+                        <p-calendar [(ngModel)]="item.empresa.fundado_em" dateFormat="dd/mm/yy" required autofocus></p-calendar>
+                        <small class="p-error" *ngIf="submitted && !item.empresa.fundado_em">fundado_em is required.</small>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="field">
+                        <label for="fundado_em">Data de Pagamento:</label>
+                        <br>
+                        <p-calendar [(ngModel)]="item.data_proximo_pagamento" dateFormat="dd/mm/yy" required autofocus></p-calendar>
+                        <small class="p-error" *ngIf="submitted && !item.data_proximo_pagamento">fundado_em is required.</small>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="field">
+                        <label for="area_atuacao">Plano Contratado:</label>
+                        <input type="text" pInputText id="area_atuacao" [(ngModel)]="item.plano_contratado.tipo" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !item.area_atuacao">CPF is required.</small>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="field">
+                        <label for="area_atuacao">Intervalos de Pagamento:</label>
+                        <input type="text" pInputText id="area_atuacao" [(ngModel)]="item.tipo_de_contratacao" required autofocus />
+                        <small class="p-error" *ngIf="submitted && !item.area_atuacao">CPF is required.</small>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="field">
+                        <label for="fundado_em">Vende bebida alcoólica:</label>
+                        <br>
+                        <p-inputSwitch [(ngModel)]="item.empresa.vende_alcool"></p-inputSwitch>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="field">
+                        <label for="fundado_em">Possui Pendência:</label>
+                        <br>
+                        <p-inputSwitch [(ngModel)]="item.possui_pendencia"></p-inputSwitch>
+                    </div>
+                </div>
+
+
+                 <div class="col-1">
+                    <div class="field">
+                        <label style="padding-right: 10px;">Paleta:</label>
+                        <p><p-colorPicker [(ngModel)]="item.empresa.identidade_visual.paleta.cor_principal"></p-colorPicker></p>
+                        
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="field">
+                        <label>.</label>
+                        <p><p-colorPicker [(ngModel)]="item.empresa.identidade_visual.paleta.cor_secundaria"></p-colorPicker></p>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="field">
+                        <label>.</label>
+                        <p><p-colorPicker [(ngModel)]="item.empresa.identidade_visual.paleta.cor_texto"></p-colorPicker></p>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="field">
+                        <label>.</label>
+                        <p><p-colorPicker [(ngModel)]="item.empresa.identidade_visual.paleta.cor_background"></p-colorPicker></p>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="field">
+                        <label>.</label>
+                        <p><p-colorPicker [(ngModel)]="item.empresa.identidade_visual.paleta.cor_realce"></p-colorPicker></p>
+                    </div>
+                </div>
+
+
+
+                </div>
+            
+
+                
+
+<div  *ngIf="item != null">
+               
+  <button *ngIf="item.plano_contratado.tipo == 'Starter'" pButton class="p-button-warning" [style]="{'width':'100%'}" (click)="openEndereco()">Plano Contratado: {{item.plano_contratado.tipo}}</button>
+  <button *ngIf="item.plano_contratado.tipo == 'Pro'" pButton class="p-button-success" [style]="{'width':'100%'}" (click)="openEndereco()">Plano Contratado: {{item.plano_contratado.tipo}}</button>
+  <button *ngIf="item.plano_contratado.tipo == 'Premium'" pButton class="p-button-help" [style]="{'width':'100%'}" (click)="openEndereco()">Plano Contratado: {{item.plano_contratado.tipo}}</button>
+  
+  <p-toolbar>
+    <button pButton pRipple icon="pi pi-map-marker" class="p-button-rounded p-button-danger mr-2" pTooltip="Endereço" (click)="openEndereco()"></button>
+    <button pButton pRipple icon="pi pi-phone" class="p-button-rounded p-button-success mr-2" pTooltip="Contato" (click)="openContatos()"></button>
+    <button pButton pRipple icon="pi pi-calendar" class="p-button-rounded p-button-help mr-2" pTooltip="Lotes/Ingressos" (click)="openLotesIngressos()"></button>
+    <button pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded p-button-warning mr-2" pTooltip="Produtos" (click)="openProdutos()"></button>
+    <button pButton pRipple icon="pi pi-users" class="p-button-rounded p-button-rounded mr-2" pTooltip="Colaboradores" (click)="openColaboradores()"></button>
+    <button pButton pRipple icon="pi pi-users" class="p-button-rounded p-button-danger mr-2" pTooltip="Parceiros" (click)="openParceiros()"></button>
+    <button pButton pRipple icon="pi pi-dollar" class="p-button-rounded p-button-success mr-2" pTooltip="Cupons de Desconto" (click)="openCupons()"></button>
+    <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-warning mr-2" pTooltip="Regras" (click)="openRegras()"></button>
+    <button pButton pRipple icon="pi pi-calendar" class="p-button-rounded p-button-rounded mr-2" pTooltip="Eventos" (click)="openEventos()"></button>
+    
+  </p-toolbar>
+
+<p-card header="Sobre nós">
+    <div class="row">    
+        
+        
+
+        
+       
+    <div class="col-10">
+<p-accordion [multiple]="true" [activeIndex]="[0]">
+    <p-accordionTab header="Missão">
+        <p>
+            {{item.missao}} 
+        </p>
+    </p-accordionTab>
+    <p-accordionTab header="Visão">
+        <p>
+            {{item.visao}}
+        </p>
+    </p-accordionTab>
+    <p-accordionTab header="Valores">
+        <p>
+            {{item.valores}}
+        </p>
+    </p-accordionTab>
+</p-accordion>
+</div>
+<div class="col-2">
+    <img [src]="'./assets/images/logo/' + item.empresa.identidade_visual.logo_fundo_claro" [alt]="item.empresa.identidade_visual.logo_fundo_claro" class="block m-auto pb-3" *ngIf="item.empresa.identidade_visual.logo_fundo_claro" />
+    
+</div>
+</div>
+</p-card>
+
+</div>
+

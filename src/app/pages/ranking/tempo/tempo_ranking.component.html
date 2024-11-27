@@ -1,0 +1,119 @@
+<div class="row">
+    <div class="col-md-1" style="position: static;">
+        <app-menu-lateral-ranking></app-menu-lateral-ranking>
+    </div>
+    <div class="col-md-10">
+        <div class="card flex justify-content-center">
+            <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+        </div>
+        <p-card header="Viagem no Tempo">
+
+            <p-toolbar *ngIf="!editando">
+                
+                   
+                <div class="col-6">
+                    <p-dropdown [options]="listaCategoria" 
+                                [(ngModel)]="itemCategoria" 
+                                [showClear]="true" 
+                                [style]="{'width':'100%'}"
+                                placeholder="Selecione o tipo de ranking no tempo"
+                                optionLabel="titulo">
+                    </p-dropdown>
+                </div>
+
+                    <div class="col-2">
+                        <div>
+                            <p-calendar [(ngModel)]="data_inicio" view="month" dateFormat="mm/yy"  required autofocus  placeholder="Data Inicial"></p-calendar>
+                            <small class="p-error" *ngIf="submitted && !data_inicio">Data Inicio is required.</small>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div>
+                            <p-calendar [(ngModel)]="data_final" view="month" dateFormat="mm/yy"  required autofocus placeholder="Data Final"></p-calendar>
+                            <small class="p-error" *ngIf="submitted && !data_final">Data final is required.</small>
+                        </div>
+                                 
+                    </div>
+                    <div class="col-1">
+                        <button pButton pRipple icon="pi pi-search" class="p-button-rounded p-button-success mr-2" (click)="getEvents()"></button>
+                                 
+                    </div>
+                
+            
+            </p-toolbar>
+            <br>
+            
+    <p-timeline *ngIf="lista != null && itemCategoria != null" [value]="lista" align="alternate" styleClass="customized-timeline">
+        <ng-template pTemplate="marker" let-item>
+            <span class="custom-marker shadow-2 bolinha_timeline" [style.backgroundColor]="item.color" >
+                <small style="color: white;">{{item.mes}}</small>
+                <!-- <i [ngClass]="item.icon" style="color: white;"></i> -->
+            </span>
+        </ng-template>
+        <ng-template pTemplate="opposite" let-item>
+            <p-card [header]="item.titulo" [subheader]="item.descricao">
+                <div class="col-12 md:col-4">
+                    <h5>Campeã(o): {{item.item_1.nome}}</h5>
+                    <p>Pontuação: {{item.item_1.quantidade + " " + itemCategoria.afetado}}</p>
+                    <p-avatar *ngIf="item.item_1.imagem != null" [pTooltip]="item.item_1.nome" [image]="getImagem(item.item_1.imagem)" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+                    <p-avatar *ngIf="item.item_2.imagem != null" [pTooltip]="item.item_2.nome"  [image]="getImagem(item.item_2.imagem)" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+                    <p-avatar *ngIf="item.item_3.imagem != null" [pTooltip]="item.item_3.nome"  [image]="getImagem(item.item_3.imagem)" styleClass="mr-2" shape="circle"></p-avatar>
+                    
+                    <p-avatar *ngIf="item.item_1.imagem == null" [pTooltip]="item.item_3.nome" [label]="item.item_1.nome.charAt(0).toUpperCase()" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+                    <p-avatar *ngIf="item.item_2.imagem == null" [pTooltip]="item.item_3.nome" [label]="item.item_2.nome.charAt(0).toUpperCase()" styleClass="mr-2" size="large" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
+                    <p-avatar *ngIf="item.item_3.imagem == null" [pTooltip]="item.item_3.nome" [label]="item.item_3.nome.charAt(0).toUpperCase()" styleClass="mr-2" [style]="{ 'background-color': '#9c27b0', color: '#ffffff' }" shape="circle"></p-avatar>
+                  
+
+                </div>
+
+                <button pButton label="Saiba mais" (click)="getSaibaMais(item)" class="p-button-text"></button>
+            </p-card>
+        </ng-template>
+    </p-timeline>
+
+    
+    <p-confirmDialog [style]="{ width: '40%' }"></p-confirmDialog>
+
+</p-card>
+
+</div>
+<p-dialog *ngIf="item != null" [(visible)]="dialog" [style]="{ width: '80%' }" [header]="item.titulo" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-toolbar>
+            <h5>{{item.descricao}}</h5>
+        </p-toolbar>
+        <p-carousel 
+        [value]="[item.item_1, item.item_2, item.item_3]" 
+        [numVisible]="4" 
+        [numScroll]="4" 
+        [circular]="true" 
+        [responsiveOptions]="responsiveOptions">
+            <ng-template let-itemInterno pTemplate="itemInterno">
+                <div class="border-1 surface-border border-round m-2 p-3">
+                    <div class="mb-3">
+                        <div class="relative mx-auto">
+                            <div class="polaroid">
+                                <img [src]="'./assets/images/mock/' + itemInterno.imagem" alt="5 Terre" style="width:100%; height: 350px; object-fit: cover;">
+                                <div class="container">
+                                    <h5>{{ itemInterno.nome }}</h5>
+                                    <h6>Pontuação: <small style="font-size: xx-large;">{{itemInterno.quantidade}}</small> {{itemCategoria.afetado}}</h6>
+                                    <p>{{ itemInterno.descricao }}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button pButton icon="pi pi-eye" class="p-button-rounded p-button-rounded mr-2" (click)="acessar(itemInterno)" style="left: 444px; top: -130px;"></button>
+                    
+                    <div class="flex justify-content-between align-items-center">
+                    <div class="mt-0 font-semibold text-xl">
+                    
+                    </div>
+                    </div>
+                </div>
+            </ng-template>
+    </p-carousel>
+        
+    </ng-template>
+</p-dialog>
+</div>

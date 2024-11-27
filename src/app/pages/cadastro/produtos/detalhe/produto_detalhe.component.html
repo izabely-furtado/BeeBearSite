@@ -1,0 +1,24 @@
+<div class="row" *ngIf="item != null">
+    <div class="col-5">
+        <img [src]="'./assets/images/mock/' + item.imagem" [alt]="item.nome" class="block m-auto pb-3" *ngIf="item.imagem" />
+    </div>
+    <div class="col-7">
+        <div class="field">
+            <label for="nome">Nome:</label>
+            <input type="text" pInputText id="nome" [(ngModel)]="item.nome" required autofocus />
+            <small class="p-error" *ngIf="submitted && !item.nome">Name is required.</small>
+        </div>
+        <div class="field">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" pInputTextarea [(ngModel)]="item.descricao" required rows="3" cols="20"></textarea>
+        </div>
+        <div class="field">
+            <label for="tipo">Tipo:</label>
+            <p-dropdown [options]="tipos" [(ngModel)]="item.tipo"></p-dropdown>
+        </div>
+        <div class="field">
+            <label for="preco_indicado">Preço Indicado:</label>
+            <p-inputNumber id="preco_indicado" [(ngModel)]="item.preco_indicado" mode="currency" currency="BRL" locale="pt-BR"></p-inputNumber>
+        </div>
+    </div>
+</div>

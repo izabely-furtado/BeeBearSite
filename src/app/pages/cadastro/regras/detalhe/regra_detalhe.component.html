@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-12">
+        <div class="field">
+            <label for="nome">Nome:</label>
+            <input type="text" pInputText id="nome" [(ngModel)]="item.nome" required autofocus [disabled]="!editando" />
+            <small class="p-error" *ngIf="submitted && !item.nome">Apelido is required.</small>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="field">
+            <label for="descricao">Descrição:</label>
+            <textarea 
+                rows="5" 
+                pInputTextarea 
+                [(ngModel)]="item.descricao">
+            </textarea>
+
+            <small class="p-error" *ngIf="submitted && !item.descricao">Descrição is required.</small>
+        </div>
+    </div>
+    
+    
+</div>
