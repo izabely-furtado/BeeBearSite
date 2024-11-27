@@ -95,32 +95,10 @@ import { MenuLateralFaturamentoComponent } from './components/menu-lateral/fatur
 import { MenuLateralRankingComponent } from './components/menu-lateral/ranking/menu-lateral-ranking.component';
 import { MenuPrincipalComponent } from './components/menu-principal/menu-principal.component';
 import { TerminalComponent } from './components/terminal/terminal.component';
-import { CadastroComponent } from './pages/cadastro/cadastro.component';
-import { ClientesComponent } from './pages/cadastro/clientes/clientes.component';
-import { ClientesDetalheComponent } from './pages/cadastro/clientes/detalhe/clientes_detalhe.component';
-import { ColaboradorComponent } from './pages/cadastro/colaboradores/colaboradores.component';
-import { CuponsComponent } from './pages/cadastro/cupons/cupons.component';
-import { CupomDetalheComponent } from './pages/cadastro/cupons/detalhe/cupom_detalhe.component';
-import { IngressoDetalheComponent } from './pages/cadastro/lotes_ingressos/detalhe/ingressos/detalhe/ingresso_detalhe.component';
-import { IngressosComponent } from './pages/cadastro/lotes_ingressos/detalhe/ingressos/ingressos.component';
-import { LoteDetalheComponent } from './pages/cadastro/lotes_ingressos/detalhe/lote_detalhe.component';
-import { LotesIngressosComponent } from './pages/cadastro/lotes_ingressos/lotes_ingressos.component';
-import { PlanoContratoDetalheComponent } from './pages/cadastro/planos_contrato/detalhe/plano_contrato_detalhe.component';
-import { PlanoContratoComponent } from './pages/cadastro/planos_contrato/planos_contrato.component';
-import { ProdutoComponent } from './pages/cadastro/produtos/produtos.component';
-import { RegrasComponent } from './pages/cadastro/regras/regras.component';
-import { EmpresaComponent } from './pages/empresa/empresa.component';
 import { EventosComponent } from './pages/eventos/eventos.component';
 import { TipoEventosComponent } from './pages/eventos/tipo/tipo_eventos.component';
-import { EventosFaturamentoComponent } from './pages/faturamento/eventos/eventos_faturamento.component';
-import { FaturamentoComponent } from './pages/faturamento/faturamento.component';
-import { GeralFaturamentoComponent } from './pages/faturamento/geral/geral_faturamento.component';
-import { ProdutosFaturamentoComponent } from './pages/faturamento/produtos/produtos_faturamento.component';
 import { IndexComponent } from './pages/index/index.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
-import { RankingComponent } from './pages/ranking/ranking.component';
-import { TempoRankingComponent } from './pages/ranking/tempo/tempo_ranking.component';
-import { TipoRankingComponent } from './pages/ranking/tipo/tipo_ranking.component';
 import { ColaboradorService } from './services/colaborador.service';
 import { ContatoService } from './services/contato.service';
 import { EmpresaService } from './services/empresa.service';
@@ -133,11 +111,15 @@ import { ProdutoService } from './services/produto.service';
 import { RegraService } from './services/regras.service';
 import { UsuarioService } from './services/usuario.service';
 import { PermissoesService } from './utils/permissoes.list';
-import { ColaboradorDetalheComponent } from './pages/cadastro/colaboradores/detalhes/colaborador_detalhe.component';
-import { RegraDetalheComponent } from './pages/cadastro/regras/detalhe/regra_detalhe.component';
-import { ProdutoDetalheComponent } from './pages/cadastro/produtos/detalhe/produto_detalhe.component';
 import { PlanoContratadoService } from './services/plano_contratado.service';
 import { ClienteService } from './services/cliente.service';
+import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
+import { FavoritosComponent } from './pages/favoritos/favoritos.component';
+import { ParaEmpresasComponent } from './pages/para_empresas/para_empresas.component';
+import { ParceirosComponent } from './pages/parceiros/parceiros.component';
+import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
+import { ProgramacaoComponent } from './pages/programacao/programacao.component';
+import { PromocoesComponent } from './pages/promocoes/promocoes.component';
 
 @NgModule({
   declarations: [
@@ -152,33 +134,15 @@ import { ClienteService } from './services/cliente.service';
     BackgroundCloudsComponent,
     IndexComponent,
     PerfilComponent,
-    EmpresaComponent,
-    ClientesComponent,
-    ClientesDetalheComponent,
-    PlanoContratoComponent,
-    PlanoContratoDetalheComponent,
-    CadastroComponent,
     EventosComponent,
     TipoEventosComponent,
-    RankingComponent,
-    TipoRankingComponent,
-    TempoRankingComponent,
-    GeralFaturamentoComponent,
-    EventosFaturamentoComponent,
-    ProdutosFaturamentoComponent,
-    FaturamentoComponent,
-    ProdutoComponent,
-    ProdutoDetalheComponent,
-    ColaboradorComponent,
-    ColaboradorDetalheComponent,
-    RegrasComponent,
-    RegraDetalheComponent,
-    CuponsComponent,
-    CupomDetalheComponent,
-    LotesIngressosComponent,
-    LoteDetalheComponent,
-    IngressosComponent,
-    IngressoDetalheComponent,
+    CarrinhoComponent,
+    FavoritosComponent,
+    ParaEmpresasComponent,
+    ParceirosComponent,
+    PesquisaComponent,
+    ProgramacaoComponent,
+    PromocoesComponent
   ],
   imports: [
     BrowserModule,

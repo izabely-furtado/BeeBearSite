@@ -182,38 +182,50 @@ public static getItemsMenuFaturamento(): MenuItem[] {
   public static getItemsMenu() {
     return [
         {
-            label: 'Empresa',
-            icon: './assets/images/3D-Icons/52.png',
-            url: './empresa',
+            label: 'Programação',
+            icon: './assets/images/3D-Icons/63.png',
+            url: './programacao',
             target: '_self'
         },
         {
-            label: 'Cadastros',
-            icon: './assets/images/3D-Icons/32.png',
-            url: './cadastro',
+            label: 'Parceiros',
+            icon: './assets/images/3D-Icons/67.png',
+            url: './parceiros',
             target: '_self'
         },
         {
-            label: 'Eventos',
-            icon: './assets/images/3D-Icons/43.png',
-            url: './eventos',
+            label: 'Para Empresas',
+            icon: './assets/images/3D-Icons/60.png',
+            url: './pempresas',
             target: '_self'
         },
         {
-            label: 'Ranking',
-            icon: './assets/images/3D-Icons/55.png',
-            url: './ranking',
+            label: 'Promoções',
+            icon: './assets/images/3D-Icons/36.png',
+            url: './promocoes',
             target: '_self'
         },
         {
-            label: 'Faturamento',
-            icon: './assets/images/3D-Icons/19.png',
-            url: './faturamento',
+            label: 'Pesquisa',
+            icon: './assets/images/3D-Icons/31.png',
+            url: './pesquisa',
+            target: '_self'
+        },
+        {
+            label: 'Carrinho',
+            icon: './assets/images/3D-Icons/17.png',
+            url: './carrinho',
+            target: '_self'
+        },
+        {
+            label: 'Favoritos',
+            icon: './assets/images/3D-Icons/47.png',
+            url: './favoritos',
             target: '_self'
         },
         {
             label: 'Perfil',
-            icon: './assets/images/3D-Icons/18.png',
+            icon: './assets/images/3D-Icons/70.png',
             url: './perfil',
             target: '_self'
         }

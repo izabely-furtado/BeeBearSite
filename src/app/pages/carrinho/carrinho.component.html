@@ -1,0 +1,98 @@
+<div class="row" *ngIf="item != null">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card flex justify-content-center">
+            <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+        </div>
+        <p-card header="Perfil">
+            <div class="row">    
+            
+        <div class="col-5">
+            <img [src]="'./assets/images/mock/' + item.imagem" [alt]="item.imagem" class="block m-auto pb-3" *ngIf="item.imagem" />
+            
+        </div>
+       
+    <div class="col-7">
+        <div class="field">
+            <label for="nome">Nome:</label>
+            <input type="text" pInputText id="nome" [(ngModel)]="item.nome" required autofocus />
+            <small class="p-error" *ngIf="submitted && !item.nome">Apelido is required.</small>
+        </div>
+        <div class="field">
+            <label for="nome">Apelido:</label>
+            <input type="text" pInputText id="apelido" [(ngModel)]="item.apelido" required autofocus />
+            <small class="p-error" *ngIf="submitted && !item.apelido">Apelido is required.</small>
+        </div>
+        <div class="field">
+            <label for="cpf">CPF:</label>
+            <input type="text" pInputText id="cep" [(ngModel)]="item.cpf" required autofocus />
+            <small class="p-error" *ngIf="submitted && !item.cpf">CPF is required.</small>
+        </div>
+        <div class="field">
+            <label for="nascimento">Nascimento:</label>
+            <br>
+            <p-calendar [(ngModel)]="item.nascimento" dateFormat="dd.mm.yy" required autofocus></p-calendar>
+            <small class="p-error" *ngIf="submitted && !item.nascimento">CPF is required.</small>
+        </div>
+        <div class="field">
+            <label for="permissoes">Permissões Geral Atualmente Atreladas:</label>
+            <input type="text" pInputText id="permissoes" [(ngModel)]="item.permissoes" required autofocus disabled/>
+            <small class="p-error" *ngIf="submitted && !item.permissoes">E-mail is required.</small>
+        </div>
+    </div>
+</div>
+<p-card header="Contato">
+<div class="row" >
+    <div class="col-6">
+        <div class="field">
+            <label for="telefone">Telefone:</label>
+            <input type="text" pInputText id="telefone" [(ngModel)]="item.contato.telefone" required autofocus [disabled]="!editando" />
+            <small class="p-error" *ngIf="submitted && !item.contato.telefone">Telefone is required.</small>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="field">
+            <label for="whatsapp">Whatsapp:</label>
+            <input type="text" pInputText id="whatsapp" [(ngModel)]="item.contato.whatsapp" required autofocus [disabled]="!editando" />
+            <small class="p-error" *ngIf="submitted && !item.contato.whatsapp">whatsapp is required.</small>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="field">
+            <label for="instagram">Instagram:</label>
+            <input type="text" pInputText id="instagram" [(ngModel)]="item.contato.instagram" required autofocus [disabled]="!editando" />
+            <small class="p-error" *ngIf="submitted && !item.contato.instagram">Instagram is required.</small>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="field">
+            <label for="linkedin">Linkedin:</label>
+            <input type="text" pInputText id="linkedin" [(ngModel)]="item.contato.linkedin" required autofocus [disabled]="!editando" />
+            <small class="p-error" *ngIf="submitted && !item.contato.linkedin">Name is required.</small>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="field">
+            <label for="tiktok">Tiktok:</label>
+            <input type="text" pInputText id="tiktok" [(ngModel)]="item.contato.tiktok" required autofocus [disabled]="!editando" />
+            <small class="p-error" *ngIf="submitted && !item.contato.tiktok">tiktok is required.</small>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="field">
+            <label for="email">E-mail:</label>
+            <input type="text" pInputText id="email" [(ngModel)]="item.contato.email" required autofocus [disabled]="!editando" />
+            <small class="p-error" *ngIf="submitted && !item.contato.email">email is required.</small>
+        </div>
+    </div>
+    
+</div>
+
+
+</p-card>
+        </p-card>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
