@@ -6,7 +6,7 @@
         <p-divider type="solid"></p-divider>
             <p-carousel 
                 [value]="items2" 
-                [numVisible]="1" 
+                [numVisible]="3" 
                 [numScroll]="1" 
                 [circular]="true" 
                 [responsiveOptions]="responsiveOptions">
@@ -15,7 +15,7 @@
                             <div class="mb-3" (click)="abrirLink(item.url)" style="cursor: grab;">
                                 <div class="relative mx-auto">
                                     <div class="polaroid">
-                                        <img [src]="item.icon" alt="5 Terre" style="width:100%; height: 550px; object-fit: cover;">
+                                        <img [src]="item.icon" alt="5 Terre" style="width:100%; height: 433px; object-fit: cover;">
                                         <div class="container">
                                             <h5>{{ item.label }}</h5>
                                         </div>
@@ -34,7 +34,9 @@
             </p-carousel>
 
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-md-12" style="position: static;">
+        <app-menu-parceiros></app-menu-parceiros>
+    </div>
 </div>
 
 

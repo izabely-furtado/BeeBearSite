@@ -1,0 +1,10 @@
+
+<div class="card">
+    <div class="dock-window">
+        <p-dock [model]="items" [position]="position">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.icon" [alt]="item.label" pTooltip="{{item.label}}" tooltipPosition="bottom" showDelay="100" width="100%"/>
+            </ng-template>
+        </p-dock>
+    </div>
+</div>

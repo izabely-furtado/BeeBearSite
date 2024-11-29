@@ -120,11 +120,13 @@ import { ParceirosComponent } from './pages/parceiros/parceiros.component';
 import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { ProgramacaoComponent } from './pages/programacao/programacao.component';
 import { PromocoesComponent } from './pages/promocoes/promocoes.component';
+import { MenuParceirosComponent } from './components/menu-parceiros/menu-parceiros.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuPrincipalComponent,
+    MenuParceirosComponent,
     MenuLateralCadastroComponent,
     MenuLateralRankingComponent,
     MenuLateralFaturamentoComponent,
