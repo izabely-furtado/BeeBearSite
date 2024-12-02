@@ -27,19 +27,26 @@ export class IndexComponent {
 
   home: MenuItem | undefined;
 
-  lista_com_pendencias!: Evento[]
-  lista_ocorrendo_hoje!: Evento[]
-  lista_mais_acessados!: Evento[]
-  lista_iniciados!: Evento[]
-  lista_finalizados!: Evento[]
-  lista_cancelados!: Evento[]
+  lista_em_destaque!: Evento[]
+  lista_pra_hoje!: Evento[]
+  lista_favoritos!: Evento[]
+  lista_pra_essa_semana!: Evento[]
+  lista_em_breve!: Evento[]
+  lista_historico!: Evento[]
 
-  lista_com_pendencias_selecteds!: Evento
-  lista_ocorrendo_hoje_selecteds!: Evento
-  lista_mais_acessados_selecteds!: Evento
-  lista_iniciados_selecteds!: Evento
-  lista_finalizados_selecteds!: Evento
-  lista_cancelados_selecteds!: Evento
+  items_lista_em_destaque: MenuItem[] | undefined;
+  items_lista_pra_hoje: MenuItem[] | undefined;
+  items_lista_favoritos!: MenuItem[] | undefined;
+  items_lista_pra_essa_semana!: MenuItem[] | undefined;
+  items_lista_em_breve!: MenuItem[] | undefined;
+  items_lista_historico!: MenuItem[] | undefined;
+
+  lista_em_destaque_selecteds!: Evento
+  lista_pra_hoje_selecteds!: Evento
+  lista_favoritos_selecteds!: Evento
+  lista_pra_essa_semana_selecteds!: Evento
+  lista_em_breve_selecteds!: Evento
+  lista_historico_selecteds!: Evento
 
   tipoEvento!: TipoEventoMenuEnum
 
@@ -59,7 +66,7 @@ export class IndexComponent {
   }
 
   ngOnInit() {
-    this.items2 = MenuService.getItemsOptionsEventos();
+    this.getEvents();
     this.positionOptions = MenuService.getPositionOptions();
 
     this.route.params.subscribe(params => {
@@ -84,6 +91,8 @@ export class IndexComponent {
           numScroll: 1
       }
   ];
+
+    
   }
 
   openNew() {
@@ -93,40 +102,124 @@ export class IndexComponent {
 
 
   abrirLink(url: string) {
-    this.router.navigate([`${url}`]);
+    this.router.navigate([`${'./eventos/detalhe/' + url}`]);
   }
 
   acessar(itemId : number) {
-    this.router.navigate([`cadastro/eventos/detalhe/${itemId}`]);
+    this.router.navigate([`eventos/detalhe/${itemId}`]);
   }
 
   getFaixaEtariaColorByFaixa(faixa: string) {
     return MockRandom.getFaixaEtariaColorByFaixa(faixa)
   }
 
-  abrirLinkComPendencias() {
-    this.router.navigate([`eventos/tipo/Com Pendências`]);
+  getEvents() {
+    this.getAllDestaque()
+    this.getAllPraHoje()
+    this.getAllFavoritos()
+    this.getAllPraEssaSemana()
+    this.getAllEmBreve()
+    this.getAllHistorico()
+    this.setEventsForItens();
   }
 
-  abrirLinkOcorrendoHoje() {
-    this.router.navigate([`eventos/tipo/Ocorrendo Hoje`]);
+  setEventsForItens() {
+    this.items_lista_em_destaque = this.eventsForMenuItens(this.lista_em_destaque)
+    this.items_lista_pra_hoje = this.eventsForMenuItens(this.lista_pra_hoje)
+    this.items_lista_favoritos = this.eventsForMenuItens(this.lista_favoritos)
+    this.items_lista_pra_essa_semana = this.eventsForMenuItens(this.lista_pra_essa_semana)
+    this.items_lista_em_breve = this.eventsForMenuItens(this.lista_em_breve)
+    this.items_lista_historico = this.eventsForMenuItens(this.lista_historico)
   }
 
-  abrirLinkMaisAcessados() {
-    this.router.navigate([`eventos/tipo/Mais Acessados`]);
+  getAllDestaque() {
+    this.service.getAllEventosEmDestaque().subscribe(
+      data => {
+        this.lista_em_destaque = data
+      },
+      error => {
+        // Handle the error in case of failure
+        console.error('Error fetching states:', error);
+      }
+    )
   }
 
-  abrirLinkIniciados() {
-    this.router.navigate([`eventos/tipo/Iniciados`]);
+  getAllPraHoje() {
+    this.service.getAllEventosOcorrendoHoje().subscribe(
+      data => {
+        this.lista_pra_hoje = data
+      },
+      error => {
+        // Handle the error in case of failure
+        console.error('Error fetching states:', error);
+      }
+    )
   }
 
-  abrirLinkFinalizados() {
-    this.router.navigate([`eventos/tipo/Finalizados`]);
+  getAllFavoritos() {
+    this.service.getAllEventosFavoritos().subscribe(
+      data => {
+        this.lista_favoritos = data
+      },
+      error => {
+        // Handle the error in case of failure
+        console.error('Error fetching states:', error);
+      }
+    )
   }
 
-  abrirLinkCancelados() {
-    this.router.navigate([`eventos/tipo/Cancelados`]);
+  getAllPraEssaSemana() {
+    this.service.getAllEventosOcorrendoEssaSemana().subscribe(
+      data => {
+        this.lista_pra_essa_semana = data
+      },
+      error => {
+        // Handle the error in case of failure
+        console.error('Error fetching states:', error);
+      }
+    )
   }
+
+  getAllEmBreve() {
+    this.service.getAllEventosOcorrendoEmBreve().subscribe(
+      data => {
+        this.lista_em_breve = data
+      },
+      error => {
+        // Handle the error in case of failure
+        console.error('Error fetching states:', error);
+      }
+    )
+  }
+
+  getAllHistorico() {
+    this.service.getAllEventosHistorico().subscribe(
+      data => {
+        this.lista_historico = data
+      },
+      error => {
+        // Handle the error in case of failure
+        console.error('Error fetching states:', error);
+      }
+    )
+  }
+
+  eventForMenuItem(evento: Evento): MenuItem {
+    return {
+      label: evento.nome,
+      icon: './assets/images/eventos/' + evento.imagem_principal,
+      url: './eventos/detalhe/' + evento.id,
+      target: '_self'
+    }
+  }
+
+  eventsForMenuItens(eventos: Evento[]): MenuItem[] {
+    let retorno : MenuItem[] = []
+    for (var evento of eventos) {
+      retorno.push(this.eventForMenuItem(evento))
+    }
+    return retorno
+  }
+
   
-
 }

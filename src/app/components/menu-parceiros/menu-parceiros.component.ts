@@ -16,6 +16,6 @@ export class MenuParceirosComponent {
     public static positionOptions = MenuService.getPositionOptions
 
     ngOnInit() {
-        this.items = MenuService.getItemsMenu();
+        this.items = MenuService.getItemsOptionsParceiros();
     }
 }

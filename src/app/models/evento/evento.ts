@@ -23,6 +23,7 @@ export interface Evento {
     data_fim: Date
     faixa_etaria: string
     regras?: Regra[]
+    lote_atual: Lote
     lotes: Lote[]
     colaboradores: Colaborador[]
     produtos: Produto[]
@@ -47,7 +48,7 @@ export class EventoMock {
     static lista: Evento[];
 
     public static getMock(): Evento {
-        let quantidade_var = MockRandom.getInteger(1,10)
+        let quantidade_var = MockRandom.getInteger(1,22)
         return {
             id: MockRandom.getInteger(1, 100) + '',
             nome: MockRandom.getName(),
@@ -58,6 +59,7 @@ export class EventoMock {
             data_fim: MockRandom.getDateFuture(),
             faixa_etaria: MockRandom.getFaixaEtaria(),
             regras: RegraMock.getMockArray(10),
+            lote_atual: LoteMock.getMock(),
             lotes: LoteMock.getMockArray(10),
             colaboradores: ColaboradorMock.getMockArray(10),
             produtos: ProdutoMock.getMockArray(10),
@@ -87,6 +89,7 @@ export class EventoMock {
             data_inicio: MockRandom.getDatePast(),
             data_fim: MockRandom.getDateFuture(),
             faixa_etaria: MockRandom.getFaixaEtaria(),
+            lote_atual: LoteMock.getMock(),
             lotes: LoteMock.getMockArray(10),
             colaboradores: ColaboradorMock.getMockArray(10),
             produtos: ProdutoMock.getMockArray(10),

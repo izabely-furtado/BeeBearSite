@@ -236,26 +236,8 @@ public static getItemsMenuFaturamento(): MenuItem[] {
   public static getItemsOptionsEventos() {
     return [
         {
-            label: 'Halloween',
-            icon: './assets/images/eventos/14.jpg',
-            url: './eventos/1',
-            target: '_self'
-        },
-        {
-            label: 'Lançamento',
-            icon: './assets/images/eventos/16.jpg',
-            url: './eventos/1',
-            target: '_self'
-        },
-        {
             label: 'TPM',
             icon: './assets/images/eventos/14.jpg',
-            url: './eventos/1',
-            target: '_self'
-        },
-        {
-            label: 'Culpado ou Inocente?',
-            icon: './assets/images/eventos/13.jpg',
             url: './eventos/1',
             target: '_self'
         },
@@ -314,15 +296,76 @@ public static getItemsMenuFaturamento(): MenuItem[] {
             target: '_self'
         },
         {
+            label: 'Culpado ou Inocente?',
+            icon: './assets/images/eventos/13.jpg',
+            url: './eventos/1',
+            target: '_self'
+        },
+        {
             label: 'B Bee Bear',
             icon: './assets/images/eventos/3.jpg',
             url: './eventos/1',
             target: '_self'
         },
         {
+          label: 'Halloween',
+          icon: './assets/images/eventos/14.jpg',
+          url: './eventos/1',
+          target: '_self'
+        },
+        {
             label: 'Open Bee Beer',
             icon: './assets/images/eventos/2.jpg',
             url: './eventos/1',
+            target: '_self'
+        }
+ 
+
+    ];
+  }
+
+  public static getItemsOptionsParceiros() {
+    return [
+        {
+            label: 'Fluente',
+            icon: './assets/images/parceiros/1.png',
+            url: './parceiros/1',
+            target: '_self'
+        },
+        {
+            label: 'Victoria Pub',
+            icon: './assets/images/parceiros/2.jpg',
+            url: './parceiros/2',
+            target: '_self'
+        },
+        {
+            label: 'Rock in Rio',
+            icon: './assets/images/parceiros/5.png',
+            url: './parceiros/5',
+            target: '_self'
+        },
+        {
+            label: 'Bolt',
+            icon: './assets/images/parceiros/6.png',
+            url: './parceiros/1',
+            target: '_self'
+        },
+        {
+            label: 'LatinoWare',
+            icon: './assets/images/parceiros/6.jpg',
+            url: './parceiros/6',
+            target: '_self'
+        },
+        {
+            label: 'PUB 426',
+            icon: './assets/images/parceiros/7.png',
+            url: './parceiros/7',
+            target: '_self'
+        },
+        {
+            label: 'WOODs',
+            icon: './assets/images/parceiros/7.jpg',
+            url: './parceiros/7',
             target: '_self'
         }
  

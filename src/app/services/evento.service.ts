@@ -86,12 +86,45 @@ export class EventoService {
   }
 
   // Retorna todos ocorrendo hoje
+  getAllEventosEmDestaque(): Observable<Evento[]> {
+    if (environment.mock) {
+        return of(EventoMock.getMockArray(20));
+    }
+    else {
+      return this.http.get<Evento[]>(`${this.url}/em_destaque`);
+
+    }
+  }
+
+  // Retorna todos ocorrendo hoje
   getAllEventosOcorrendoHoje(): Observable<Evento[]> {
     if (environment.mock) {
         return of(EventoMock.getMockArray(20));
     }
     else {
       return this.http.get<Evento[]>(`${this.url}/ocorrendo_hoje`);
+
+    }
+  }
+
+  // Retorna todos ocorrendo hoje
+  getAllEventosOcorrendoEssaSemana(): Observable<Evento[]> {
+    if (environment.mock) {
+        return of(EventoMock.getMockArray(20));
+    }
+    else {
+      return this.http.get<Evento[]>(`${this.url}/ocorrendo_essa_semana`);
+
+    }
+  }
+
+  // Retorna todos ocorrendo hoje
+  getAllEventosOcorrendoEmBreve(): Observable<Evento[]> {
+    if (environment.mock) {
+        return of(EventoMock.getMockArray(20));
+    }
+    else {
+      return this.http.get<Evento[]>(`${this.url}/ocorrendo_em_breve`);
 
     }
   }
@@ -103,6 +136,17 @@ export class EventoService {
     }
     else {
       return this.http.get<Evento[]>(`${this.url}/mais_acessados`);
+
+    }
+  }
+
+  // Retorna até 10 eventos mais acessados
+  getAllEventosFavoritos(): Observable<Evento[]> {
+    if (environment.mock) {
+        return of(EventoMock.getMockArray(10));
+    }
+    else {
+      return this.http.get<Evento[]>(`${this.url}/favritos`);
 
     }
   }
@@ -125,6 +169,17 @@ export class EventoService {
     }
     else {
       return this.http.get<Evento[]>(`${this.url}/finalizados`);
+
+    }
+  }
+
+  // Retorna todos acessados anteriormente - histórico
+  getAllEventosHistorico(): Observable<Evento[]> {
+    if (environment.mock) {
+        return of(EventoMock.getMockArray(20));
+    }
+    else {
+      return this.http.get<Evento[]>(`${this.url}/historico`);
 
     }
   }
