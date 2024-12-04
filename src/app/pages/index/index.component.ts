@@ -27,19 +27,14 @@ export class IndexComponent {
 
   home: MenuItem | undefined;
 
+  lista_de_lista_eventos!: ListaDeListaEventos[]
+
   lista_em_destaque!: Evento[]
   lista_pra_hoje!: Evento[]
   lista_favoritos!: Evento[]
   lista_pra_essa_semana!: Evento[]
   lista_em_breve!: Evento[]
   lista_historico!: Evento[]
-
-  items_lista_em_destaque: MenuItem[] | undefined;
-  items_lista_pra_hoje: MenuItem[] | undefined;
-  items_lista_favoritos!: MenuItem[] | undefined;
-  items_lista_pra_essa_semana!: MenuItem[] | undefined;
-  items_lista_em_breve!: MenuItem[] | undefined;
-  items_lista_historico!: MenuItem[] | undefined;
 
   lista_em_destaque_selecteds!: Evento
   lista_pra_hoje_selecteds!: Evento
@@ -120,17 +115,15 @@ export class IndexComponent {
     this.getAllPraEssaSemana()
     this.getAllEmBreve()
     this.getAllHistorico()
-    this.setEventsForItens();
+    this.lista_de_lista_eventos = []
+    this.lista_de_lista_eventos.push({nome: 'Pra Hoje', lista_evento: this.lista_pra_hoje})
+    this.lista_de_lista_eventos.push({nome: 'Favoritos', lista_evento: this.lista_favoritos})
+    this.lista_de_lista_eventos.push({nome: 'Pra Essa Semana', lista_evento: this.lista_pra_essa_semana})
+    this.lista_de_lista_eventos.push({nome: 'Em breve', lista_evento: this.lista_em_breve})
+    this.lista_de_lista_eventos.push({nome: 'Histórico', lista_evento: this.lista_historico})
   }
 
-  setEventsForItens() {
-    this.items_lista_em_destaque = this.eventsForMenuItens(this.lista_em_destaque)
-    this.items_lista_pra_hoje = this.eventsForMenuItens(this.lista_pra_hoje)
-    this.items_lista_favoritos = this.eventsForMenuItens(this.lista_favoritos)
-    this.items_lista_pra_essa_semana = this.eventsForMenuItens(this.lista_pra_essa_semana)
-    this.items_lista_em_breve = this.eventsForMenuItens(this.lista_em_breve)
-    this.items_lista_historico = this.eventsForMenuItens(this.lista_historico)
-  }
+  
 
   getAllDestaque() {
     this.service.getAllEventosEmDestaque().subscribe(
@@ -213,13 +206,12 @@ export class IndexComponent {
     }
   }
 
-  eventsForMenuItens(eventos: Evento[]): MenuItem[] {
-    let retorno : MenuItem[] = []
-    for (var evento of eventos) {
-      retorno.push(this.eventForMenuItem(evento))
-    }
-    return retorno
-  }
+  
+  
+}
 
+class ListaDeListaEventos {
+  nome!: string
+  lista_evento!: Evento[]
   
 }

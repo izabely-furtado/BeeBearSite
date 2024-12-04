@@ -367,6 +367,24 @@ public static getItemsMenuFaturamento(): MenuItem[] {
             icon: './assets/images/parceiros/7.jpg',
             url: './parceiros/7',
             target: '_self'
+        },
+        {
+            label: 'Tomorowland',
+            icon: './assets/images/parceiros/8.jpg',
+            url: './parceiros/8',
+            target: '_self'
+        },
+        {
+            label: 'Campus Party',
+            icon: './assets/images/parceiros/8.png',
+            url: './parceiros/8',
+            target: '_self'
+        },
+        {
+            label: 'Bebs',
+            icon: './assets/images/parceiros/9.png',
+            url: './parceiros/9',
+            target: '_self'
         }
  
 

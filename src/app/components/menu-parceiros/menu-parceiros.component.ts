@@ -11,7 +11,7 @@ import { MenuItem  } from 'primeng/api';
 export class MenuParceirosComponent {
   items: MenuItem[] | undefined;
 
-    position: string = 'top';
+    position: string = 'left';
 
     public static positionOptions = MenuService.getPositionOptions
 
