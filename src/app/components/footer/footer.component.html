@@ -1,5 +1,51 @@
 
 <footer>
-      
+      <div class="row">
+        <div class="col-1" ></div>
+        <div class="col-3" >
+            <h4>TOP EVENTOS</h4>
+            <!-- <div  *ngFor="let item of lista_em_destaque; index as i; first as isFirst">
+                <p><button pButton pRipple class="p-button-rounded p-button-success mr-2"> {{i+1}}ª</button>
+                                    {{item.nome}}</p>
+            </div> -->
+
+            <div>
+                <p>
+                    <button pButton pRipple class="p-button-rounded p-button-success mr-2"> 1ª</button>
+                    {{lista_em_destaque[0].nome}}
+                </p>
+                <p>
+                    <button pButton pRipple class="p-button-rounded p-button-warning mr-2"> 2ª</button>
+                    {{lista_em_destaque[1].nome}}
+                </p>
+                <p>
+                    <button pButton pRipple class="p-button-rounded p-button-danger mr-2"> 3ª</button>
+                    {{lista_em_destaque[2].nome}}
+                </p>
+                <p>
+                    <button pButton pRipple class="p-button-rounded p-button-rounded mr-2"> 4ª</button>
+                    {{lista_em_destaque[3].nome}}
+                </p>
+            </div>
+        </div>
+        <div class="col-3" >
+            <h4>PARA EMPRESAS</h4>
+            <p><button pButton icon="pi pi-info-circle" pRipple class="p-button-rounded p-button-rounded mr-2"></button>Sobre</p>
+            <p><button pButton icon="pi pi-star" pRipple class="p-button-rounded p-button-success mr-2"></button>Club Básico</p>
+            <p><button pButton icon="pi pi-star-fill" pRipple class="p-button-rounded p-button-help mr-2"></button>Club Intermediário</p>
+            <p><button pButton icon="pi pi-heart-fill " pRipple class="p-button-rounded p-button-warning mr-2"></button>Club Premium</p>
+        </div>
+        <div class="col-3" >
+            <h4>BEE BEAR</h4>
+            <p><button pButton icon="pi pi-info-circle" pRipple class="p-button-rounded p-button-rounded mr-2"></button>Sobre</p>
+            <p><button pButton icon="pi pi-building" pRipple class="p-button-rounded p-button-danger mr-2"></button>Parceiros</p>
+            <p><button pButton icon="pi pi-briefcase" pRipple class="p-button-rounded p-button-warning mr-2"></button>Trabalhe Conosco</p>
+            <p><button pButton icon="pi pi-dollar" pRipple class="p-button-rounded p-button-success mr-2"></button>Promoções</p>
+        </div>
+        <div class="col-2">
+            <img [src]="'./assets/images/logo/icon.png'" alt="5 Terre" style="width:60%; object-fit: cover;">
+                                        
+        </div>
+      </div>
       
 </footer>

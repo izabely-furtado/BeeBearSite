@@ -85,6 +85,16 @@ export class EventoService {
     }
   }
 
+  getAllEventosTOP4(): Observable<Evento[]> {
+    if (environment.mock) {
+        return of(EventoMock.getMockArray(4));
+    }
+    else {
+      return this.http.get<Evento[]>(`${this.url}/top_4`);
+
+    }
+  }
+
   // Retorna todos ocorrendo hoje
   getAllEventosEmDestaque(): Observable<Evento[]> {
     if (environment.mock) {
