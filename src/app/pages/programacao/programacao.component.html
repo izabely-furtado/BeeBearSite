@@ -1,78 +1,15 @@
 <div class="row">
-    <div class="col-md-1" style="position: static;" >
+    <div class="col-md-1" style="position: static; padding-top: 90px;" >
         <!-- <app-menu-parceiros></app-menu-parceiros> -->
         <app-menu-pesquisa></app-menu-pesquisa>
         
     </div>
-    <div class="col-md-10">
-
-        <div class="col-md-12 teste" style="position: static;">
-            <p-carousel 
-                [value]="lista_em_destaque" 
-                [numVisible]="1" 
-                [numScroll]="1" 
-                [circular]="true" 
-                [responsiveOptions]="responsiveOptions">
-                    <ng-template let-item pTemplate="item">
-                        <div class="border-1 surface-border border-round m-2 p-3">
-                            <div class="mb-3" (click)="abrirLink(item.id)" style="cursor: grab;">
-                                <div class="relative mx-auto">
-                                    <div class="polaroid" style="margin: 0px;">
-                                        <img [src]="'./assets/images/eventos/' + item.imagem_principal" alt="5 Terre" style="width:100%; height: 433px; object-fit: cover;">
-                                        
-                                        <!-- <div class="container" >
-                                            <button pButton pRipple class="p-button-rounded mr-2">
-                                                    Saiba Mais</button>
-                                        </div> -->
-                                    </div>
-                                </div>
-                                <div style="position: relative; top: -266px; height: 0px; margin-left: 2%; color: aliceblue;"  class="row">
-                                    <div class="col-12" style="margin-bottom: 30px;">
-                                        <button pButton pRipple class="p-button-rounded mr-2">
-                                            Saiba Mais
-                                        </button>
-                                    </div>
-                                    <div class="col-12" style="margin-bottom: 30px;">
-                                        <button pButton pRipple class="p-button-rounded mr-2"  style="background-color: #00000014; border: #00000014;;">
-                                            <h1>{{ item.nome }}</h1>
-                                        </button>
-                                    </div>
-                                    <div class="col-12" style="margin-bottom: 30px;">
-                                        <button pButton pRipple class="p-button-rounded mr-2" style="background-color: #00000014; border: #00000014;;">
-                                            <p>{{ item.descricao }}</p>
-                                        </button>
-                                    </div>
-                                        <!-- <h1 style="font-family: 'Chewy'; font-size: 50px">{{ item.nome }}</h1>
-                                    <p style="font-family: 'Pompiere'; font-size: 25px">{{ item.descricao }}</p> -->
-                                </div>
-                                <div  style="position: relative; top: -10px;height: 0px;"  >
-                                    <button pButton pRipple class="p-button-success mr-2 faixa_estaria"  
-                                            style="background-color: {{getFaixaEtariaColorByFaixa(item.faixa_etaria)}}; border:{{getFaixaEtariaColorByFaixa(item.faixa_etaria)}}">
-                                                            {{item.faixa_etaria}}
-                                                    </button>
-                                </div>
-
-                                <div style="position: relative; top: -291px; height: 0px; " >
-                                    <button style="top: -30px; margin-left: 95.8%; margin-bottom: 20px; " pButton pRipple icon="pi pi-clock" class="p-button-rounded p-button-success mr-2" tooltipPosition="left"  pTooltip="Início: {{ item.data_inicio | date:'dd/MM/yy hh:mm' }}"></button>
-                                    <button style="top: -30px; margin-left: 95.8%; margin-bottom: 20px; " pButton pRipple icon="pi pi-clock" class="p-button-rounded p-button-danger mr-2" tooltipPosition="left" pTooltip="Fim: {{ item.data_fim | date:'dd/MM/yy hh:mm' }} "></button>
-                                    <button style="top: -30px; margin-left: 95.8%; margin-bottom: 20px; " pButton pRipple icon="pi pi-calendar" class="p-button-rounded p-button-help mr-2" tooltipPosition="left" pTooltip="Tipo de Evento: {{ item.tipo }}"></button>
-                                    <button style="top: -30px; margin-left: 95.8%; margin-bottom: 20px; " pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded p-button-warning mr-2" tooltipPosition="left" pTooltip="Lote: {{ item.lote_atual.nome }}"></button>
-                                    <button style="top: -30px; margin-left: 95.8%; margin-bottom: 20px; " pButton pRipple icon="pi pi-dollar" class="p-button-rounded p-button-rounded mr-2" tooltipPosition="left" pTooltip="Valores: {{ item.lote_atual.valor_padrao | currency:'BRL' }}"></button>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                    </ng-template>
-            </p-carousel>
-            </div>
-    </div>
-
-    <div class="col-md-12" style="position: static; padding-left: 100px;" *ngFor="let lista of lista_de_lista_eventos; index as i; first as isFirst">
-        <h2 style="padding-left: 50px;">{{lista.nome}}</h2>
+    
+    <div class="col-md-12" style="position: static; padding-left: 100px;">
+        <h1 style="padding-left: 50px;">Eventos Encontrados</h1>
         
         <p-carousel 
-                [value]="lista.lista_evento" 
+                [value]="lista_em_breve" 
                 [numVisible]="6" 
                 [numScroll]="1" 
                 [circular]="true" 
