@@ -121,6 +121,8 @@ import { PesquisaComponent } from './pages/pesquisa/pesquisa.component';
 import { ProgramacaoComponent } from './pages/programacao/programacao.component';
 import { PromocoesComponent } from './pages/promocoes/promocoes.component';
 import { MenuParceirosComponent } from './components/menu-parceiros/menu-parceiros.component';
+import { MenuPesquisaComponent } from './components/menu-pesquisa/menu-pesquisa.component';
+import { MenuPesquisaLateralComponent } from './components/menu-pesquisa_lateral/menu-pesquisa_lateral.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +133,8 @@ import { MenuParceirosComponent } from './components/menu-parceiros/menu-parceir
     MenuLateralRankingComponent,
     MenuLateralFaturamentoComponent,
     MenuLateralEventosComponent,
+    MenuPesquisaComponent,
+    MenuPesquisaLateralComponent,
     TerminalComponent,
     FooterComponent,
     BackgroundCloudsComponent,

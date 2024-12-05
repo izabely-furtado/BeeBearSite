@@ -1,0 +1,198 @@
+
+<div style="position: fixed; top: 90px; z-index: 9;">
+    <div class="dock-window"  style="background-color: #ffffffa6; padding-top: 15px; padding-bottom: 5px;">
+
+         
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-1">
+                <div class="field">
+                    <label for="nome">Nome:</label>
+                    <input type="text" pInputText id="nome" [(ngModel)]="pesquisa.nome" required autofocus />
+                    <small class="p-error" *ngIf="submitted && !pesquisa.nome">Apelido is required.</small>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="field"  style="width: 100%">
+                    <label for="city">Estado</label>
+                    <br>
+                    <p-multiSelect 
+                        [options]="estados" 
+                        [(ngModel)]="selectedEstados" 
+                        optionLabel="nome" 
+                        [filter]="true" 
+                        placeholder="Estados "
+                        [showClear]="true"
+                        style="max-width: 100%;"
+                        scrollHeight="250px"  />
+                    <!-- <p-dropdown [options]="estados" optionLabel="nome" [(ngModel)]="pesquisa.estados"></p-dropdown> -->
+                </div>
+            </div>
+            <!-- <div class="col-2" *ngIf="pesquisa.estado != null && pesquisa.estado.nome != null">
+                <div class="field">
+                    <label for="cidade">Cidade:</label>
+                    <br>
+                    <p-dropdown [options]="pesquisa.estado.cidades" optionLabel="nome" [(ngModel)]="pesquisa.cidade"></p-dropdown>
+               </div>
+            </div> -->
+            <div class="col-1">
+                <div class="field">
+                    <label for="data_inicial">Período Inicial:</label>
+                    <br>
+                    <p-calendar [(ngModel)]="pesquisa.data_inicial" dateFormat="dd/mm/yy" required autofocus></p-calendar>
+                    <small class="p-error" *ngIf="submitted && !pesquisa.data_inicial">data_inicial is required.</small>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="field">
+                    <label for="data_inicial">Período Final:</label>
+                    <br>
+                    <p-calendar [(ngModel)]="pesquisa.data_final" dateFormat="dd/mm/yy" required autofocus></p-calendar>
+                    <small class="p-error" *ngIf="submitted && !pesquisa.data_final">data_final is required.</small>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="field">
+                    <label for="preco_minimo">Preço mínimo:</label>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <input
+                            type="number"
+                            pInputText
+                            [(ngModel)]="rangeValues[0]"
+                            (input)="updateRange()"
+                          />
+                        </div>
+                        <div class="col-6">
+                            
+                            <input 
+                            type="number" 
+                            pInputText 
+                            [(ngModel)]="rangeValues[1]" 
+                            (input)="updateRange()" />
+
+                        </div>
+                    </div>
+           
+
+                       <p-slider [(ngModel)]="rangeValues" [range]="true" styleClass="w-14rem" [min]="0" [max]="100" [range]="true"/>
+                    
+
+                    
+
+                    <!-- <input type="number" pInputText id="preco_minimo" [(ngModel)]="pesquisa.preco_minimo" required autofocus />
+                    <input type="number" pInputText id="preco_maximo" [(ngModel)]="pesquisa.preco_maximo" required autofocus /> -->
+                </div>
+            </div>
+            
+            
+            <div class="col-1">
+                <div class="field">
+                    <label for="tipo_evento">Tipo de Evento:</label>
+                    <br>
+                    <p-multiSelect 
+                        [options]="tipos_de_evento" 
+                        [(ngModel)]="tipos_de_eventoSelecteds" 
+                        [filter]="true" 
+                        placeholder="Selecione Tipos"
+                        [showClear]="true"
+                        style="max-width: 100%;"
+                        scrollHeight="250px"  />
+
+                    <!-- <input type="text" pInputText id="tipo_evento" [(ngModel)]="pesquisa.tipo_evento" required autofocus /> -->
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="field">
+                    <label for="parceiro">Parceiro:</label>
+                    <br>
+                    <p-multiSelect 
+                        [options]="parceiros" 
+                        [(ngModel)]="parceirosSelecteds" 
+                        optionLabel="label" 
+                        [filter]="true" 
+                        placeholder="Selecione Parceiros"
+                        [showClear]="true"
+                        style="max-width: 100%;"
+                        scrollHeight="250px"  />
+
+                    <!-- <input type="text" pInputText id="parceiro" [(ngModel)]="pesquisa.parceiro" required autofocus /> -->
+                </div>   
+            </div>
+
+            <div class="col-3">
+                <div class="field">
+                    <label for="faixa_etaria">Faixa Etária:</label>
+                    <br>
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('18')" *ngIf="desabilite18" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+18')}}; border:{{getFaixaEtariaColorByFaixa('+18')}}; opacity:40%;">
+                        +18
+                    </button>
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('18')" *ngIf="!desabilite18" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+18')}}; border:{{getFaixaEtariaColorByFaixa('+18')}};">
+                        +18
+                    </button>
+
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('16')" *ngIf="desabilite16" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+16')}}; border:{{getFaixaEtariaColorByFaixa('+16')}}; opacity:40%;">
+                        +16
+                    </button>
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('16')" *ngIf="!desabilite16" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+16')}}; border:{{getFaixaEtariaColorByFaixa('+16')}};">
+                        +16
+                    </button>
+                    
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('14')" *ngIf="desabilite14" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+14')}}; border:{{getFaixaEtariaColorByFaixa('+14')}}; opacity:40%;">
+                        +14
+                    </button>
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('14')" *ngIf="!desabilite14" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+14')}}; border:{{getFaixaEtariaColorByFaixa('+14')}};">
+                        +14
+                    </button>
+
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('12')" *ngIf="desabilite12" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+12')}}; border:{{getFaixaEtariaColorByFaixa('+12')}}; opacity:40%;">
+                        +12
+                    </button>
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('12')" *ngIf="!desabilite12" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+12')}}; border:{{getFaixaEtariaColorByFaixa('+12')}};">
+                        +12
+                    </button>
+
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('10')" *ngIf="desabilite10" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+10')}}; border:{{getFaixaEtariaColorByFaixa('+10')}}; opacity:40%;">
+                        +10
+                    </button>
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('10')" *ngIf="!desabilite10" class="mr-2"  
+                        style="padding: 10px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('+10')}}; border:{{getFaixaEtariaColorByFaixa('+10')}};">
+                        +10
+                    </button>
+
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('L')" *ngIf="desabiliteL" class="mr-2"  
+                        style="padding: 10px 20px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('_L_')}}; border:{{getFaixaEtariaColorByFaixa('_L_')}}; opacity:40%;">
+                        L
+                    </button>
+                    <button pButton pRipple (click)="changeDesabitiliteFaixa('L')" *ngIf="!desabiliteL" class="mr-2"  
+                        style="padding: 10px 20px; cursor: auto; background-color: {{getFaixaEtariaColorByFaixa('_L_')}}; border:{{getFaixaEtariaColorByFaixa('_L_')}};">
+                        L
+                    </button>
+
+                    <!-- <input type="text" pInputText id="faixa_etaria" [(ngModel)]="pesquisa.faixa_etaria" required autofocus /> -->
+                </div>
+            </div>
+            
+            <div class="col-1">
+                <div class="field">
+                    <label for="pesquisa">.</label>
+                    <br>
+                    <button pButton pRipple icon="pi pi-search" style="left: -110px;" class="p-button-rounded p-button-success mr-2" tooltipPosition="left"  pTooltip="Pesquisar"></button>
+                </div>   
+                
+                                    
+            </div>
+        </div>
+        
+    </div>
+</div>

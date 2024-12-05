@@ -20,9 +20,7 @@ export class FooterComponent {
   }
 
   ngOnInit() {
-    this.getAllEventosTOP4();
-    debugger
-    
+    this.getAllEventosTOP4();    
   }
 
   getAllEventosTOP4() {

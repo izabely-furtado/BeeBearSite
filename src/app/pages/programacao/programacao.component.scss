@@ -1,3 +1,59 @@
 .p-breadcrumb .p-breadcrumb-chevron:before {
   content: "-" !important;
 }
+.pagina-item {
+  .pagina-item-content {
+      border: 1px solid var(--surface-d);
+      border-radius: 3px;
+      margin: .3rem;
+      text-align: center;
+      padding: 2rem 0;
+      cursor: pointer;
+  }
+
+  .pagina-image {
+      width: 50%;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      cursor: pointer;
+  }
+}
+
+.faixa_estaria {
+  padding: 20px 8px 20px 8px; 
+  cursor: auto;
+  position: relative; 
+  top: -404px;
+  height: 0px;  
+  margin-left: 95.68%;  
+  font-size: larger; 
+  font-weight: bold;                              
+}
+
+.faixa_estaria_mini {
+  padding: 20px 8px 20px 8px; 
+  cursor: auto;
+  position: relative; 
+   top: -200px;
+  height: 0px;  
+  margin-left: 78%;  
+  font-size: larger; 
+  font-weight: bold;                              
+}
+
+h4 {
+  font-family: 'Chewy'; 
+  font-size: 40px                    
+}
+
+h1 {
+  font-family: 'Chewy'; 
+  font-size: 50px                    
+}
+
+
+p {
+  font-family: 'Pompiere'; 
+  font-size: 30px
+}
+
+
