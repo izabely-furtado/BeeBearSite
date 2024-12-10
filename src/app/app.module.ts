@@ -148,7 +148,7 @@ import { MenuPesquisaLateralComponent } from './components/menu-pesquisa_lateral
     ParceirosComponent,
     PesquisaComponent,
     ProgramacaoComponent,
-    PromocoesComponent
+    PromocoesComponent,
   ],
   imports: [
     BrowserModule,

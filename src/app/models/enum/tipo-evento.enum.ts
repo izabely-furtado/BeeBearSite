@@ -1,7 +1,7 @@
 export enum TipoEventoEnum {
     show = 'Show',
     balada = 'Balada',
-    aniversario15 = 'Aniversário de 15 anos',
+    aniversario15 = 'Debutante',
     aniversario = 'Aniversário',
     palestra = 'Palestra',
     aula = 'Aula',

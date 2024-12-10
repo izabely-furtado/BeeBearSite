@@ -13,7 +13,6 @@ import { MenuService } from 'app/utils/menu.list';
 import { MockRandom } from 'app/utils/mock-random';
 import { ConfirmationService, MenuItem, MessageService  } from 'primeng/api';
 
-
 @Component({
   selector: 'app-menu-pesquisa_lateral',
   templateUrl: './menu-pesquisa_lateral.component.html',
