@@ -10,6 +10,7 @@ export interface Contato {
     linkedin?: string
     email?: string
     tiktok?: string
+    youtube?: string
     origem?: TipoOrigemEnum
 }
 
@@ -22,6 +23,7 @@ export class ContatoMock {
             telefone: '(' + MockRandom.getInteger(10, 99) + ')' + MockRandom.getInteger(100000000, 999999999),
             whatsapp: '(' + MockRandom.getInteger(10, 99) + ')' + MockRandom.getInteger(100000000, 999999999),
             instagram: '@' + MockRandom.getUserName(),
+            youtube: '@' + MockRandom.getUserName(),
             linkedin: MockRandom.getString(),
             email:  MockRandom.getEmail(),
             tiktok: '@' + MockRandom.getUserName(),

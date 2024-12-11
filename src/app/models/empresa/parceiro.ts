@@ -13,7 +13,8 @@ export interface Parceiro {
     razao_social?: string
     area_atuacao?: AreaAtuacaoEnum,
     colaborador: Colaborador
-
+    imagem_principal?: string //decidir se fica depois
+    
     valido?: boolean
 }
 
@@ -21,14 +22,15 @@ export class ParceiroMock {
     static lista: Parceiro[];
 
     public static getMock(): Parceiro {
-        let quantidade_var = MockRandom.getInteger(1,18)
+        let quantidade_var = MockRandom.getInteger(1,9)
         return {
             id: MockRandom.getInteger(1, 100) + '',
             tipo_pessoa: TipoPessoaEnumMock.getMock(),
             documento: MockRandom.getInteger(100, 999) + '.' + MockRandom.getInteger(100, 999) + '.' + MockRandom.getInteger(100, 999) + '-' + MockRandom.getInteger(10, 99),
             razao_social: MockRandom.getUserName(),
             colaborador: ColaboradorMock.getMock(),
-            area_atuacao: AreaAtuacaoEnumMock.getMock()
+            area_atuacao: AreaAtuacaoEnumMock.getMock(),
+            imagem_principal: quantidade_var + '.jpg',
         };
     }
 

@@ -5,10 +5,15 @@ import { Evento } from 'app/models/evento/evento';
 import { Usuario } from 'app/models/usuario/usuario';
 import { EnderecoService } from 'app/services/endereco.service';
 import { EventoService } from 'app/services/evento.service';
+import { ParceiroService } from 'app/services/parceiro.service';
 import { UsuarioService } from 'app/services/usuario.service';
 import { MenuService } from 'app/utils/menu.list';
 import { MockRandom } from 'app/utils/mock-random';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { Parceiro } from '../../models/empresa/parceiro';
+import { AreaAtuacaoEnum } from 'app/models/enum/area-atuacao.enum';
+import { EmpresaService } from 'app/services/empresa.service';
+import { Empresa } from 'app/models/empresa/empresa';
 
 @Component({
   selector: 'app-parceiros',
@@ -27,13 +32,9 @@ export class ParceirosComponent {
   
   rangeValues: number[] = [20, 80];
 
-  lista_de_lista_eventos!: ListaDeListaEventos[]
-
-  lista_em_breve!: Evento[]
-  lista_em_breve_selecteds!: Evento
+  lista!: Empresa[]
+  lista_selecteds!: Empresa
   
-  tipoEvento!: TipoEventoMenuEnum
-
   statuses!: any[];
   responsiveOptions;
 
@@ -42,13 +43,13 @@ export class ParceirosComponent {
   submitted: boolean = false;
 
     home: MenuItem | undefined;
-    constructor(private serviceEndereco: EnderecoService, private service: EventoService, private messageService: MessageService, private confirmationService: ConfirmationService, private route: ActivatedRoute, private router: Router) { 
+    constructor(private service: EmpresaService, private messageService: MessageService, private confirmationService: ConfirmationService, private route: ActivatedRoute, private router: Router) { 
       this.responsiveOptions = MenuService.getResponsiveOptions();
     }
 
     ngOnInit() {
-      this.getAllEmBreve();
-      // this.getCidades();
+      this.getAllParceiros();
+      console.log(this.lista)
       this.positionOptions = MenuService.getPositionOptions();
       
       this.responsiveOptions = [
@@ -92,11 +93,11 @@ export class ParceirosComponent {
     getFaixaEtariaColorByFaixa(faixa: string) {
       return MockRandom.getFaixaEtariaColorByFaixa(faixa)
     }
-  
-    getAllEmBreve() {
-      this.service.getAllEventosOcorrendoEmBreve().subscribe(
+
+    getAllParceiros() {
+      this.service.getAllEmpresas().subscribe(
         data => {
-          this.lista_em_breve = data
+          this.lista = data
         },
         error => {
           // Handle the error in case of failure
@@ -104,7 +105,7 @@ export class ParceirosComponent {
         }
       )
     }
-    
+  
     eventForMenuItem(evento: Evento): MenuItem {
       return {
         label: evento.nome,

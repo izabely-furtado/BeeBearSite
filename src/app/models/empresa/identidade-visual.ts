@@ -5,6 +5,7 @@ import { Paleta, PaletaMock } from "./paleta";
 
 export interface IdentidadeVisual {
     id: number
+    imagem_principal: string;
     logo_fundo_claro: string,
     logo_fundo_escuro: Imagem,
     paleta: Paleta,
@@ -17,13 +18,15 @@ export class IdentidadeVisualMock {
     static lista: IdentidadeVisual[];
 
     public static getMock(): IdentidadeVisual {
+        let quantidade_var = MockRandom.getInteger(1,7)
         return {
             id: MockRandom.getInteger(1, 100),
             logo_fundo_claro: MockRandom.getInteger(1, 65) + '.png',
             logo_fundo_escuro: ImagemMock.getMock(),
             paleta: PaletaMock.getMock(),
             imagens: ImagemMock.getMockArray(10),
-            valido: MockRandom.getBoolean()
+            valido: MockRandom.getBoolean(),
+            imagem_principal: quantidade_var + '.jpg',
         };
     }
 
