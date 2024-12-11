@@ -82,53 +82,6 @@
                     <input type="number" pInputText id="preco_maximo" [(ngModel)]="pesquisa.preco_maximo" required autofocus /> -->
                 </div>
             </div>
-            
-            
-            <div class="col-6">
-                <div class="field">
-                    <label for="tipo_evento">Tipo de Evento:</label>
-                    <br>
-                    <!-- <p-multiSelect 
-                        [options]="tipos_de_evento" 
-                        [(ngModel)]="tipos_de_eventoSelecteds" 
-                        [filter]="true" 
-                        placeholder="Selecione"
-                        [showClear]="true"
-                        style="max-width: 100%;"
-                        scrollHeight="250px"  /> -->
-
-                    <!-- <input type="text" pInputText id="tipo_evento" [(ngModel)]="pesquisa.tipo_evento" required autofocus /> -->
-
-                    <div *ngFor="let category of tipos_de_evento" class="field-checkbox" style="margin-bottom: 3px;">
-                        <p-checkbox name="group" [value]="category" [(ngModel)]="tipos_de_eventoSelecteds" [inputId]="category"></p-checkbox>
-                        <label [for]="category" style="margin-bottom: 0rem; margin-left: 10px;">{{ category }}</label>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="field">
-                    <label for="parceiro">Parceiro:</label>
-                    <br>
-                    <!-- <p-multiSelect 
-                        [options]="parceiros" 
-                        [(ngModel)]="parceirosSelecteds" 
-                        optionLabel="label" 
-                        [filter]="true" 
-                        placeholder="Selecione"
-                        [showClear]="true"
-                        style="max-width: 100%;"
-                        scrollHeight="250px"  /> -->
-
-                    <!-- <input type="text" pInputText id="parceiro" [(ngModel)]="pesquisa.parceiro" required autofocus /> -->
-
-                    <div *ngFor="let category of parceiros" class="field-checkbox" style="margin-bottom: 3px;">
-                        <p-checkbox name="group" [value]="category" [(ngModel)]="parceirosSelecteds" [inputId]="category"></p-checkbox>
-                        <label [for]="category" style="margin-bottom: 0rem; margin-left: 10px;">{{ category.label }}</label>
-                    </div>
-                </div>   
-            </div>
-
             <div class="col-12">
                 <div class="field">
                     <label for="faixa_etaria">Faixa Etária:</label>
@@ -190,6 +143,53 @@
                     <!-- <input type="text" pInputText id="faixa_etaria" [(ngModel)]="pesquisa.faixa_etaria" required autofocus /> -->
                 </div>
             </div>
+            
+            <div class="col-6">
+                <div class="field">
+                    <label for="tipo_evento">Tipo de Evento:</label>
+                    <br>
+                    <!-- <p-multiSelect 
+                        [options]="tipos_de_evento" 
+                        [(ngModel)]="tipos_de_eventoSelecteds" 
+                        [filter]="true" 
+                        placeholder="Selecione"
+                        [showClear]="true"
+                        style="max-width: 100%;"
+                        scrollHeight="250px"  /> -->
+
+                    <!-- <input type="text" pInputText id="tipo_evento" [(ngModel)]="pesquisa.tipo_evento" required autofocus /> -->
+
+                    <div *ngFor="let category of tipos_de_evento" class="field-checkbox" style="margin-bottom: 3px;">
+                        <p-checkbox name="group" [value]="category" [(ngModel)]="tipos_de_eventoSelecteds" [inputId]="category"></p-checkbox>
+                        <label [for]="category" style="margin-bottom: 0rem; margin-left: 10px;">{{ category }}</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="field">
+                    <label for="parceiro">Parceiro:</label>
+                    <br>
+                    <!-- <p-multiSelect 
+                        [options]="parceiros" 
+                        [(ngModel)]="parceirosSelecteds" 
+                        optionLabel="label" 
+                        [filter]="true" 
+                        placeholder="Selecione"
+                        [showClear]="true"
+                        style="max-width: 100%;"
+                        scrollHeight="250px"  /> -->
+
+                    <!-- <input type="text" pInputText id="parceiro" [(ngModel)]="pesquisa.parceiro" required autofocus /> -->
+
+                    <div *ngFor="let category of parceiros" class="field-checkbox" style="margin-bottom: 3px;">
+                        <p-checkbox name="group" [value]="category" [(ngModel)]="parceirosSelecteds" [inputId]="category"></p-checkbox>
+                        <label [for]="category" style="margin-bottom: 0rem; margin-left: 10px;">{{ category.label }}</label>
+                    </div>
+                </div>   
+            </div>
+
+            
             <br><br>
                 <br><br>
                     <button pButton style="width: 90%;" class="p-button-rounded" tooltipPosition="left">
