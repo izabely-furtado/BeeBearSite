@@ -123,6 +123,7 @@ import { PromocoesComponent } from './pages/promocoes/promocoes.component';
 import { MenuParceirosComponent } from './components/menu-parceiros/menu-parceiros.component';
 import { MenuPesquisaComponent } from './components/menu-pesquisa/menu-pesquisa.component';
 import { MenuPesquisaLateralComponent } from './components/menu-pesquisa_lateral/menu-pesquisa_lateral.component';
+import { MenuPesquisaParceirosComponent } from './components/menu-pesquisa-parceiros/menu-pesquisa-parceiros.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +136,7 @@ import { MenuPesquisaLateralComponent } from './components/menu-pesquisa_lateral
     MenuLateralEventosComponent,
     MenuPesquisaComponent,
     MenuPesquisaLateralComponent,
+    MenuPesquisaParceirosComponent,
     TerminalComponent,
     FooterComponent,
     BackgroundCloudsComponent,

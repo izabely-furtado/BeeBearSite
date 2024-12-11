@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Estado } from 'app/models/endereco/estado';
 import { TipoEventoMenuEnum } from 'app/models/enum/tipo-evento-menu.enum';
+import { TipoEventoEnum, TipoEventoEnumMock } from 'app/models/enum/tipo-evento.enum';
 import { Evento } from 'app/models/evento/evento';
+import { Pesquisa } from 'app/models/pesquisa';
 import { Usuario } from 'app/models/usuario/usuario';
 import { EnderecoService } from 'app/services/endereco.service';
 import { EventoService } from 'app/services/evento.service';
-import { UsuarioService } from 'app/services/usuario.service';
+import { EstadoService } from 'app/utils/estado.list';
 import { MenuService } from 'app/utils/menu.list';
 import { MockRandom } from 'app/utils/mock-random';
-import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService  } from 'primeng/api';
+
 
 @Component({
-  selector: 'app-parceiros',
-  templateUrl: './parceiros.component.html',
-  styleUrls: ['./parceiros.component.scss']
+  selector: 'app-menu-pesquisa-parceiros',
+  templateUrl: './menu-pesquisa-parceiros.component.html',
+  styleUrls: ['./menu-pesquisa-parceiros.component.scss']
 })
-export class ParceirosComponent {
+export class MenuPesquisaParceirosComponent {
   name = 'Jane';
   teste = undefined;
   valid = false;
@@ -25,15 +29,15 @@ export class ParceirosComponent {
   position: string = 'top';
   positionOptions: any
   
+  estados: Estado[] = EstadoService.getLista()
+  selectedEstados!: Estado[]
+  cidades: string[] = [];
   rangeValues: number[] = [20, 80];
 
-  lista_de_lista_eventos!: ListaDeListaEventos[]
-
-  lista_em_breve!: Evento[]
-  lista_em_breve_selecteds!: Evento
-  
   tipoEvento!: TipoEventoMenuEnum
 
+  pesquisa!: Pesquisa
+  
   statuses!: any[];
   responsiveOptions;
 
@@ -41,34 +45,25 @@ export class ParceirosComponent {
 
   submitted: boolean = false;
 
+  desabilite18: boolean = false;
+  desabilite16: boolean = false;
+  desabilite14: boolean = false;
+  desabilite12: boolean = false;
+  desabilite10: boolean = false;
+  desabiliteL: boolean = false;
+
+  tipos_de_evento: TipoEventoEnum[] = TipoEventoEnumMock.getLista()
+  tipos_de_eventoSelecteds!: TipoEventoEnum[]
+  parceiros: MenuItem[] = MenuService.getItemsOptionsParceiros(); 
+  parceirosSelecteds!: MenuItem[]
+
     home: MenuItem | undefined;
     constructor(private serviceEndereco: EnderecoService, private service: EventoService, private messageService: MessageService, private confirmationService: ConfirmationService, private route: ActivatedRoute, private router: Router) { 
       this.responsiveOptions = MenuService.getResponsiveOptions();
     }
 
     ngOnInit() {
-      this.getAllEmBreve();
-      // this.getCidades();
-      this.positionOptions = MenuService.getPositionOptions();
-      
-      this.responsiveOptions = [
-        {
-            breakpoint: '1199px',
-            numVisible: 1,
-            numScroll: 1
-        },
-        {
-            breakpoint: '991px',
-            numVisible: 2,
-            numScroll: 1
-        },
-        {
-            breakpoint: '767px',
-            numVisible: 1,
-            numScroll: 1
-        }
-    ];
-  
+      this.pesquisa = {} as Pesquisa
       
     }
   
@@ -76,6 +71,7 @@ export class ParceirosComponent {
       this.submitted = false; 
       this.dialog = true;
     }
+
     
     updateRange() {
       this.rangeValues = [...this.rangeValues];
@@ -92,19 +88,9 @@ export class ParceirosComponent {
     getFaixaEtariaColorByFaixa(faixa: string) {
       return MockRandom.getFaixaEtariaColorByFaixa(faixa)
     }
-  
-    getAllEmBreve() {
-      this.service.getAllEventosOcorrendoEmBreve().subscribe(
-        data => {
-          this.lista_em_breve = data
-        },
-        error => {
-          // Handle the error in case of failure
-          console.error('Error fetching states:', error);
-        }
-      )
-    }
+
     
+  
     eventForMenuItem(evento: Evento): MenuItem {
       return {
         label: evento.nome,
@@ -114,6 +100,15 @@ export class ParceirosComponent {
       }
     }
   
+    changeDesabitiliteFaixa(faixa: string) {
+      if (faixa == '18') this.desabilite18 = !this.desabilite18
+      if (faixa == '16') this.desabilite16 = !this.desabilite16
+      if (faixa == '14') this.desabilite14 = !this.desabilite14
+      if (faixa == '12') this.desabilite12 = !this.desabilite12
+      if (faixa == '10') this.desabilite10 = !this.desabilite10
+      if (faixa == 'L' ) this.desabiliteL  = !this.desabiliteL
+    }
+    
   }
   
   class ListaDeListaEventos {
