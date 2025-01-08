@@ -334,55 +334,61 @@ public static getItemsMenuFaturamento(): MenuItem[] {
         },
         {
             label: 'Victoria Pub',
-            icon: './assets/images/parceiros/2.jpg',
+            icon: './assets/images/parceiros/2.png',
             url: './parceiros/2',
             target: '_self'
         },
         {
-            label: 'Rock in Rio',
+            label: 'Coca Cola',
+            icon: './assets/images/parceiros/3.png',
+            url: './parceiros/3',
+            target: '_self'
+        },
+        {
+            label: 'Tomorowland',
+            icon: './assets/images/parceiros/4.jpg',
+            url: './parceiros/4',
+            target: '_self'
+        },
+        {
+            label: 'Campus Party',
             icon: './assets/images/parceiros/5.png',
             url: './parceiros/5',
             target: '_self'
         },
         {
-            label: 'Bolt',
+            label: 'Rock in Rio',
             icon: './assets/images/parceiros/6.png',
-            url: './parceiros/1',
+            url: './parceiros/5',
             target: '_self'
         },
         {
             label: 'LatinoWare',
-            icon: './assets/images/parceiros/6.jpg',
+            icon: './assets/images/parceiros/7.png',
             url: './parceiros/6',
             target: '_self'
         },
         {
-            label: 'PUB 426',
-            icon: './assets/images/parceiros/7.png',
-            url: './parceiros/7',
-            target: '_self'
-        },
-        {
-            label: 'WOODs',
-            icon: './assets/images/parceiros/7.jpg',
-            url: './parceiros/7',
-            target: '_self'
-        },
-        {
-            label: 'Tomorowland',
-            icon: './assets/images/parceiros/8.jpg',
-            url: './parceiros/8',
-            target: '_self'
-        },
-        {
-            label: 'Campus Party',
+            label: 'Bolt',
             icon: './assets/images/parceiros/8.png',
             url: './parceiros/8',
             target: '_self'
         },
         {
-            label: 'Bebs',
+            label: 'WOODs',
             icon: './assets/images/parceiros/9.png',
+            url: './parceiros/7',
+            target: '_self'
+        },
+        {
+            label: 'PUB 426',
+            icon: './assets/images/parceiros/10.png',
+            url: './parceiros/7',
+            target: '_self'
+        },
+        {
+            label: 'Bebs',
+            icon: './assets/images/parceiros/11.png',
             url: './parceiros/9',
             target: '_self'
         }
