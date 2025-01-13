@@ -19,6 +19,7 @@ export interface PlanoContratado {
     mostra_ranking_def: string
     mostra_informacoes_gerais_bee_bear: boolean
     mostra_informacoes_gerais_bee_bear_def: string
+    valor_contratado: number
 }
 
 export class PlanoContratadoMock {
@@ -61,6 +62,7 @@ export class PlanoContratadoMock {
             usa_base_dados_bee_bear_def: PlanoContratadoMock.usa_base_dados_bee_bear_def,
             mostra_ranking_def: PlanoContratadoMock.mostra_ranking_def,
             mostra_informacoes_gerais_bee_bear_def: PlanoContratadoMock.mostra_informacoes_gerais_bee_bear_def,
+            valor_contratado: MockRandom.getFloat(1,100),
         };
     }
 
@@ -81,6 +83,7 @@ export class PlanoContratadoMock {
             usa_base_dados_bee_bear_def: PlanoContratadoMock.usa_base_dados_bee_bear_def,
             mostra_ranking_def: PlanoContratadoMock.mostra_ranking_def,
             mostra_informacoes_gerais_bee_bear_def: PlanoContratadoMock.mostra_informacoes_gerais_bee_bear_def,
+            valor_contratado: MockRandom.getFloat(100,10000),
         };
     }
 
@@ -101,6 +104,7 @@ export class PlanoContratadoMock {
             usa_base_dados_bee_bear_def: PlanoContratadoMock.usa_base_dados_bee_bear_def,
             mostra_ranking_def: PlanoContratadoMock.mostra_ranking_def,
             mostra_informacoes_gerais_bee_bear_def: PlanoContratadoMock.mostra_informacoes_gerais_bee_bear_def,
+            valor_contratado: MockRandom.getFloat(10000,1000000),
         };
     }
 

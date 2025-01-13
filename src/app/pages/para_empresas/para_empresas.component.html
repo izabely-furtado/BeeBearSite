@@ -1,98 +1,188 @@
-<div class="row" *ngIf="item != null">
+<div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <div class="card flex justify-content-center">
-            <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
-        </div>
-        <p-card header="Perfil">
-            <div class="row">    
-            
-        <div class="col-5">
-            <img [src]="'./assets/images/mock/' + item.imagem" [alt]="item.imagem" class="block m-auto pb-3" *ngIf="item.imagem" />
-            
-        </div>
-       
-    <div class="col-7">
-        <div class="field">
-            <label for="nome">Nome:</label>
-            <input type="text" pInputText id="nome" [(ngModel)]="item.nome" required autofocus />
-            <small class="p-error" *ngIf="submitted && !item.nome">Apelido is required.</small>
-        </div>
-        <div class="field">
-            <label for="nome">Apelido:</label>
-            <input type="text" pInputText id="apelido" [(ngModel)]="item.apelido" required autofocus />
-            <small class="p-error" *ngIf="submitted && !item.apelido">Apelido is required.</small>
-        </div>
-        <div class="field">
-            <label for="cpf">CPF:</label>
-            <input type="text" pInputText id="cep" [(ngModel)]="item.cpf" required autofocus />
-            <small class="p-error" *ngIf="submitted && !item.cpf">CPF is required.</small>
-        </div>
-        <div class="field">
-            <label for="nascimento">Nascimento:</label>
-            <br>
-            <p-calendar [(ngModel)]="item.nascimento" dateFormat="dd.mm.yy" required autofocus></p-calendar>
-            <small class="p-error" *ngIf="submitted && !item.nascimento">CPF is required.</small>
-        </div>
-        <div class="field">
-            <label for="permissoes">Permissões Geral Atualmente Atreladas:</label>
-            <input type="text" pInputText id="permissoes" [(ngModel)]="item.permissoes" required autofocus disabled/>
-            <small class="p-error" *ngIf="submitted && !item.permissoes">E-mail is required.</small>
-        </div>
-    </div>
-</div>
-<p-card header="Contato">
-<div class="row" >
-    <div class="col-6">
-        <div class="field">
-            <label for="telefone">Telefone:</label>
-            <input type="text" pInputText id="telefone" [(ngModel)]="item.contato.telefone" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.telefone">Telefone is required.</small>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="field">
-            <label for="whatsapp">Whatsapp:</label>
-            <input type="text" pInputText id="whatsapp" [(ngModel)]="item.contato.whatsapp" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.whatsapp">whatsapp is required.</small>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="field">
-            <label for="instagram">Instagram:</label>
-            <input type="text" pInputText id="instagram" [(ngModel)]="item.contato.instagram" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.instagram">Instagram is required.</small>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="field">
-            <label for="linkedin">Linkedin:</label>
-            <input type="text" pInputText id="linkedin" [(ngModel)]="item.contato.linkedin" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.linkedin">Name is required.</small>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="field">
-            <label for="tiktok">Tiktok:</label>
-            <input type="text" pInputText id="tiktok" [(ngModel)]="item.contato.tiktok" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.tiktok">tiktok is required.</small>
-        </div>
-    </div>
-    <div class="col-12">
-        <div class="field">
-            <label for="email">E-mail:</label>
-            <input type="text" pInputText id="email" [(ngModel)]="item.contato.email" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.email">email is required.</small>
-        </div>
-    </div>
+        <h4 style="padding-left: 20px;">Planos:</h4>
+
+        <p-table
+                    #dt
+                    [value]="planosPossiveis"
+                    [rows]="10"
+                    [paginator]="false"
+                    [globalFilterFields]="['tipo', 'quant_usuarios_max', 'gerenciamento_de_permissoes', 'gerencia_produtos', 'gerencia_parceiros', 'usa_base_dados_bee_bear', 'mostra_ranking', 'mostra_informacoes_gerais_bee_bear']"
+                    [tableStyle]="{ 'min-width': '75rem' }"
+                    
+                    [rowHover]="true"
+                    dataKey="id"
+                >
+                    
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="tipo">Tipo</th>
+                            <th pSortableColumn="quant_usuarios_max">Máximo de Usuários <p-sortIcon field="quant_usuarios_max"></p-sortIcon></th>
+                            <th pSortableColumn="gerenciamento_de_permissoes">
+                                <button pButton pRipple icon="pi pi-key" class="p-button-rounded p-button-warning mr-2" pTooltip="Gerenciamento de Permissões"></button>
+                            </th>
+                            <th pSortableColumn="gerencia_produtos">
+                                <button pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded p-button-danger mr-2" pTooltip="Gerenciamento de Produtos"></button>
+                            </th>
+                            <th pSortableColumn="gerencia_parceiros">
+                                <button pButton pRipple icon="pi pi-users" class="p-button-rounded p-button-help mr-2" pTooltip="Gerenciamento de Parceiros"></button>
+                            </th>
+                            <th pSortableColumn="usa_base_dados_bee_bear">
+                                <button pButton pRipple icon="pi pi-book" class="p-button-rounded p-button-success mr-2" pTooltip="Usa Base de Dados"></button>
+                            </th>
+                            <th pSortableColumn="mostra_ranking">
+                                <button pButton pRipple icon="pi pi-star" class="p-button-rounded p-button-warning mr-2" pTooltip="Mostra Ranking"></button>
+                            </th>
+                            <th pSortableColumn="mostra_informacoes_gerais_bee_bear">
+                                <button pButton pRipple icon="pi pi-chart-line" class="p-button-rounded p-button-rounded mr-2" pTooltip="Mostra Informações Gerais"></button>
+                            </th>
+                            <th pSortableColumn="valor">Valor</th>
+                            
+                            <th style="width: 4rem"></th>
     
+    
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item>
+                        <tr>
+                            <td>{{ item.tipo }}</td>
+                            <td>{{ item.quant_usuarios_max }}</td>
+                            <td><p-inputSwitch [(ngModel)]="item.mostra_informacoes_gerais_bee_bear" disabled></p-inputSwitch></td>
+                            <td><p-inputSwitch [(ngModel)]="item.gerencia_produtos" disabled></p-inputSwitch></td>
+                            <td><p-inputSwitch [(ngModel)]="item.gerencia_parceiros" disabled></p-inputSwitch></td>
+                            <td><p-inputSwitch [(ngModel)]="item.usa_base_dados_bee_bear" disabled></p-inputSwitch></td>
+                            <td><p-inputSwitch [(ngModel)]="item.mostra_ranking" disabled></p-inputSwitch></td>
+                            <td><p-inputSwitch [(ngModel)]="item.mostra_informacoes_gerais_bee_bear" disabled></p-inputSwitch></td>
+                            <td>{{ item.valor_contratado | currency:'BRL' }}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-gift" class="p-button-rounded p-button-success mr-2" pTooltip="Aderir ao Plano"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    
+                </p-table>
+                <br>
+                <p-divider />
+                <br>
+                        
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <button pButton pRipple (click)="activeIndex = 0" icon="pi pi-key" class="p-button-rounded p-button-warning mr-2" pTooltip="Gerenciamento de Permissões"></button>
+                        </div>
+                        <div class="col-md-2">
+                            <button pButton pRipple (click)="activeIndex = 1" icon="pi pi-shopping-cart" class="p-button-rounded p-button-danger mr-2" pTooltip="Gerenciamento de Produtos"></button>
+                        </div>
+                        <div class="col-md-2">
+                            <button pButton pRipple (click)="activeIndex = 2" icon="pi pi-users" class="p-button-rounded p-button-help mr-2" pTooltip="Gerenciamento de Parceiros"></button>
+                        </div>
+                        <div class="col-md-2">
+                            <button pButton pRipple (click)="activeIndex = 3" icon="pi pi-book" class="p-button-rounded p-button-success mr-2" pTooltip="Usa Base de Dados"></button>
+                        </div>
+                        <div class="col-md-2">
+                            <button pButton pRipple (click)="activeIndex = 4" icon="pi pi-star" class="p-button-rounded p-button-warning mr-2" pTooltip="Mostra Ranking"></button>
+                        </div>
+                        <div class="col-md-1">
+                            <button pButton pRipple (click)="activeIndex = 5" icon="pi pi-chart-line" class="p-button-rounded p-button-rounded mr-2" pTooltip="Mostra Informações Gerais"></button>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="col-md-9"></div>
+
+                        <div class="col-md-3">
+                            <button pButton pRipple (click)="activeIndex = 0" icon="pi pi-key" class="p-button-rounded p-button-warning mr-2" pTooltip="Gerenciamento de Permissões"></button>
+                            <button pButton pRipple (click)="activeIndex = 1" icon="pi pi-shopping-cart" class="p-button-rounded p-button-danger mr-2" pTooltip="Gerenciamento de Produtos"></button>
+                            <button pButton pRipple (click)="activeIndex = 2" icon="pi pi-users" class="p-button-rounded p-button-help mr-2" pTooltip="Gerenciamento de Parceiros"></button>
+                            <button pButton pRipple (click)="activeIndex = 3" icon="pi pi-book" class="p-button-rounded p-button-success mr-2" pTooltip="Usa Base de Dados"></button>
+                            <button pButton pRipple (click)="activeIndex = 4" icon="pi pi-star" class="p-button-rounded p-button-warning mr-2" pTooltip="Mostra Ranking"></button>
+                            <button pButton pRipple (click)="activeIndex = 5" icon="pi pi-chart-line" class="p-button-rounded p-button-rounded mr-2" pTooltip="Mostra Informações Gerais"></button>
+                        </div>
+                    </div> -->
+                    <p-accordion (activeIndexChange)="activeIndexChange($event)" [activeIndex]="activeIndex">
+                        <p-accordionTab class="gerenciamentoPermissoes" header="Gerenciamento de permissões">     
+                        
+                            <p class="m-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </p-accordionTab>
+                        <p-accordionTab class="gerenciamentoProdutos" header="Gerenciamento de Produtos">
+                            <p class="m-0">
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                            </p>
+                        </p-accordionTab>
+                        <p-accordionTab class="gerenciamentoParceiros" header="Gerenciamento de Parceiros">
+                            <p class="m-0">
+                                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                                qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+                            </p>
+                        </p-accordionTab>
+                        <p-accordionTab class="usaBaseDados" header="Usa Base de Dados">
+                            <p class="m-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </p-accordionTab>
+                        <p-accordionTab class="mostraRanking" header="Mostra Ranking">
+                            <p class="m-0">
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                            </p>
+                        </p-accordionTab>
+                        <p-accordionTab class="mostraInfosGerais" header="Mostra Informações Gerais">
+                            <p class="m-0">
+                                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+                                qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+                            </p>
+                        </p-accordionTab>
+                    </p-accordion>
+            
+                    <br>
+                    <p-divider />
+                    
+                    <h4 style="padding-left: 20px;">Perguntas Frequentes:</h4>
+
+                    <p-accordion>
+                        <p-accordionTab header="Quem pode participar?">     
+                        
+                            <p class="m-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </p-accordionTab>
+                        <p-accordionTab header="Quem pode participar?">     
+                        
+                            <p class="m-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </p-accordionTab>
+                        <p-accordionTab header="Quem pode participar?">     
+                        
+                            <p class="m-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </p-accordionTab>
+                        <p-accordionTab header="Quem pode participar?">     
+                        
+                            <p class="m-0">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </p-accordionTab>
+                    </p-accordion>
+
+    
+
+   
 </div>
 
 
-</p-card>
-        </p-card>
 
-    </div>
-    <div class="col-md-1"></div>
-</div>
 
+
+<p-confirmDialog [style]="{ width: '40%' }"></p-confirmDialog>
