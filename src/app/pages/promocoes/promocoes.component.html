@@ -1,98 +1,87 @@
-<div class="row" *ngIf="item != null">
+<app-menu-pesquisa-parceiros></app-menu-pesquisa-parceiros>
+
+    
+<div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <div class="card flex justify-content-center">
-            <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
-        </div>
-        <p-card header="Perfil">
-            <div class="row">    
-            
-        <div class="col-5">
-            <img [src]="'./assets/images/mock/' + item.imagem" [alt]="item.imagem" class="block m-auto pb-3" *ngIf="item.imagem" />
-            
-        </div>
-       
-    <div class="col-7">
-        <div class="field">
-            <label for="nome">Nome:</label>
-            <input type="text" pInputText id="nome" [(ngModel)]="item.nome" required autofocus />
-            <small class="p-error" *ngIf="submitted && !item.nome">Apelido is required.</small>
-        </div>
-        <div class="field">
-            <label for="nome">Apelido:</label>
-            <input type="text" pInputText id="apelido" [(ngModel)]="item.apelido" required autofocus />
-            <small class="p-error" *ngIf="submitted && !item.apelido">Apelido is required.</small>
-        </div>
-        <div class="field">
-            <label for="cpf">CPF:</label>
-            <input type="text" pInputText id="cep" [(ngModel)]="item.cpf" required autofocus />
-            <small class="p-error" *ngIf="submitted && !item.cpf">CPF is required.</small>
-        </div>
-        <div class="field">
-            <label for="nascimento">Nascimento:</label>
-            <br>
-            <p-calendar [(ngModel)]="item.nascimento" dateFormat="dd.mm.yy" required autofocus></p-calendar>
-            <small class="p-error" *ngIf="submitted && !item.nascimento">CPF is required.</small>
-        </div>
-        <div class="field">
-            <label for="permissoes">Permissões Geral Atualmente Atreladas:</label>
-            <input type="text" pInputText id="permissoes" [(ngModel)]="item.permissoes" required autofocus disabled/>
-            <small class="p-error" *ngIf="submitted && !item.permissoes">E-mail is required.</small>
-        </div>
+        <h4 style="padding-left: 20px;">Parceiros:</h4>
+
+        <div class="row">
+        <div class="col-md-12" *ngFor="let item of lista" >
+            <div class="border-1 surface-border border-round m-2 p-3" *ngIf="lista != null">
+                <div class="mb-3" style="cursor: grab;">
+
+
+
+                    <div class="relative mx-auto">
+                        <div class="polaroid">
+                            <img [src]="'./assets/images/eventos/' + item.imagem_principal" alt="5 Terre" style="width:100%; height: 433px; object-fit: cover;">
+                            <div class="container" >
+                                <h4>{{ item.nome }}</h4>
+
+                                <div class="row" style="position: relative; top: -333px; left: 44%; height: 0px; " >
+                                <div class="col-3" *ngFor="let itemPromo of item.promocoes" >
+                                    <div *ngIf="item.promocoes != null">
+                                            <div class="relative mx-auto">
+                                                <div class="polaroid">
+                                                    <img [src]="'./assets/images/eventos/' + itemPromo.imagem_principal" alt="5 Terre" style="width:100%; height: 133px; object-fit: cover;">
+                                                    <div class="container" >
+                                                        <h5>{{ itemPromo.nome }}</h5>
+                                                        <p>{{ item.lote_atual.valor_padrao | currency:'BRL' }}</p>
+                                                        
+                                                    </div>
+                                                </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>  
+                            </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div  style="position: relative; top: -80px;height: 0px; "  >
+                        <button pButton pRipple class="p-button-success mr-2 faixa_estaria_mini"  
+                                style="background-color: {{getFaixaEtariaColorByFaixa(item.faixa_etaria)}}; border:{{getFaixaEtariaColorByFaixa(item.faixa_etaria)}}">
+                                                {{item.faixa_etaria}}
+                                        </button>
+                    </div>
+                    
+                    <div style="position: relative; top: -535px; left: 95%; height: 0px; " >
+                        <div style="position: relative; top: -6px; height: 0px; " >
+                            <button pButton pRipple icon="pi pi-clock" class="p-button-rounded p-button-success mr-2" pTooltip="Início: {{ item.data_inicio | date:'dd/MM/yy hh:mm' }}"></button>
+                        </div>
+                        <div style="position: relative; top: 44px; height: 0px; " >
+                            <button pButton pRipple icon="pi pi-clock" class="p-button-rounded p-button-danger mr-2" pTooltip="Fim: {{ item.data_fim | date:'dd/MM/yy hh:mm' }} "></button>
+                        </div>
+                        <div style="position: relative; top: 94px; height: 0px; " >
+                            <button pButton pRipple icon="pi pi-calendar" class="p-button-rounded p-button-help mr-2" pTooltip="Tipo de Evento: {{ item.tipo }}"></button>
+                        </div>
+                        <div style="position: relative; top: 144px; height: 0px; " >
+                            <button pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded p-button-warning mr-2" pTooltip="Lote: {{ item.lote_atual.nome }}"></button>
+                        </div>
+                        <div style="position: relative; top: 194px; height: 0px; " >
+                            <button pButton pRipple icon="pi pi-dollar" class="p-button-rounded p-button-rounded mr-2" pTooltip="Valores: {{ item.lote_atual.valor_padrao | currency:'BRL' }}"></button>
+                        </div>
+                    </div>
+
+                    
+                </div>
+                
+            </div>
+        </div>            
     </div>
-</div>
-<p-card header="Contato">
-<div class="row" >
-    <div class="col-6">
-        <div class="field">
-            <label for="telefone">Telefone:</label>
-            <input type="text" pInputText id="telefone" [(ngModel)]="item.contato.telefone" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.telefone">Telefone is required.</small>
-        </div>
     </div>
-    <div class="col-6">
-        <div class="field">
-            <label for="whatsapp">Whatsapp:</label>
-            <input type="text" pInputText id="whatsapp" [(ngModel)]="item.contato.whatsapp" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.whatsapp">whatsapp is required.</small>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="field">
-            <label for="instagram">Instagram:</label>
-            <input type="text" pInputText id="instagram" [(ngModel)]="item.contato.instagram" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.instagram">Instagram is required.</small>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="field">
-            <label for="linkedin">Linkedin:</label>
-            <input type="text" pInputText id="linkedin" [(ngModel)]="item.contato.linkedin" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.linkedin">Name is required.</small>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="field">
-            <label for="tiktok">Tiktok:</label>
-            <input type="text" pInputText id="tiktok" [(ngModel)]="item.contato.tiktok" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.tiktok">tiktok is required.</small>
-        </div>
-    </div>
-    <div class="col-12">
-        <div class="field">
-            <label for="email">E-mail:</label>
-            <input type="text" pInputText id="email" [(ngModel)]="item.contato.email" required autofocus [disabled]="!editando" />
-            <small class="p-error" *ngIf="submitted && !item.contato.email">email is required.</small>
-        </div>
-    </div>
+
+
     
+
+   
 </div>
 
 
-</p-card>
-        </p-card>
 
-    </div>
-    <div class="col-md-1"></div>
-</div>
 
+
+<p-confirmDialog [style]="{ width: '40%' }"></p-confirmDialog>

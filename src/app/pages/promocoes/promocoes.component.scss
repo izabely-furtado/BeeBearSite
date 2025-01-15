@@ -1,3 +1,36 @@
 .p-breadcrumb .p-breadcrumb-chevron:before {
   content: "-" !important;
 }
+
+
+h4 {
+  font-family: 'Chewy'; 
+  font-size: 40px                    
+}
+
+h5 {
+  font-family: 'Chewy'; 
+  font-size: 20px                    
+}
+
+h1 {
+  font-family: 'Chewy'; 
+  font-size: 50px                    
+}
+
+p {
+  font-family: 'Pompiere'; 
+  font-size: 30px
+}
+
+
+.faixa_estaria_mini {
+  padding: 20px 8px 20px 8px; 
+  cursor: auto;
+  position: relative; 
+   top: -600px;
+  height: 0px;  
+  margin-left: 95%;  
+  font-size: larger; 
+  font-weight: bold;                              
+}

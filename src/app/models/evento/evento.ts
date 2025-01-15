@@ -11,6 +11,8 @@ import { TipoEventoEnum, TipoEventoEnumMock } from "../enum/tipo-evento.enum";
 import { Regra, RegraMock } from "../regra";
 import { AreaMusical, AreaMusicalMock } from "../musica/area-musical";
 import { StatusEventoEnum, StatusEventoEnumMock } from "../enum/status-evento.enum";
+import { Promocao, PromocaoMock } from "./promocao";
+import { PromocoesComponent } from "app/pages/promocoes/promocoes.component";
 
 export interface Evento {
     id: string //decidir depois se vai virar number
@@ -42,6 +44,7 @@ export interface Evento {
     status: StatusEventoEnum
 
     valido?: boolean
+    promocoes: Promocao[]
 }
 
 export class EventoMock {
@@ -75,6 +78,7 @@ export class EventoMock {
             area_musical: AreaMusicalMock.getMock(),
             status: StatusEventoEnumMock.getLista()[MockRandom.getInteger(1,4)],
             valido: MockRandom.getBoolean(),
+            promocoes: PromocaoMock.getMockArray(3)
         };
     }
 
@@ -105,6 +109,7 @@ export class EventoMock {
             area_musical: AreaMusicalMock.getMock(),
             status: StatusEventoEnumMock.getLista()[MockRandom.getInteger(1,5)],
             valido: MockRandom.getBoolean(),
+            promocoes: PromocaoMock.getMockArray(3)
         };
     }
 
